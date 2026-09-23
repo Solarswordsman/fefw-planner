@@ -2,4 +2,41 @@ import { describe, expect, it } from "vitest";
 import { assign, isAuto, isReq, minR } from "./assign";
 import { DATA, ROUTES } from "./data";
 
-describe("assign", () => { it("assigns every non-auto recruit exactly once on a recruitable route", () => { const { out } = assign(DATA, {}, 0); const units = DATA.recruits.filter((u) => ROUTES.some((r) => isReq(u[r])) && !ROUTES.some((r) => isAuto(u[r]))); expect(Object.keys(out)).toHaveLength(units.length); for (const u of units) expect(isReq(u[out[u.n]])).toBe(true); }); it("chooses the minimum renown at tolerance zero", () => { const { out } = assign(DATA, {}, 0); for (const u of DATA.recruits) if (out[u.n]) { const req = u[out[u.n]]; expect(isReq(req) && req[1]).toBe(minR(u)); } }); it("skips units already obtained", () => { const { out } = assign(DATA, { Jester: true }, 0); expect(out.Jester).toBeUndefined(); }); it("never exceeds min renown plus two at tolerance two", () => { const { out } = assign(DATA, {}, 2); for (const u of DATA.recruits) if (out[u.n]) { const req = u[out[u.n]]; expect(isReq(req) && req[1]).toBeLessThanOrEqual(minR(u) + 2); } }); });
+describe("assign", () => {
+	it("assigns every non-auto recruit exactly once on a recruitable route", () => {
+		const { out } = assign(DATA, {}, 0);
+		const units = DATA.recruits.filter(
+			(u) => ROUTES.some((r) => isReq(u[r])) && !ROUTES.some((r) => isAuto(u[r])),
+		);
+
+		expect(Object.keys(out)).toHaveLength(units.length);
+		for (const u of units) {
+			expect(isReq(u[out[u.n]])).toBe(true);
+		}
+	});
+
+	it("chooses the minimum renown at tolerance zero", () => {
+		const { out } = assign(DATA, {}, 0);
+
+		for (const u of DATA.recruits) {
+			if (!out[u.n]) continue;
+			const req = u[out[u.n]];
+			expect(isReq(req) && req[1]).toBe(minR(u));
+		}
+	});
+
+	it("skips units already obtained", () => {
+		const { out } = assign(DATA, { Jester: true }, 0);
+		expect(out.Jester).toBeUndefined();
+	});
+
+	it("never exceeds min renown plus two at tolerance two", () => {
+		const { out } = assign(DATA, {}, 2);
+
+		for (const u of DATA.recruits) {
+			if (!out[u.n]) continue;
+			const req = u[out[u.n]];
+			expect(isReq(req) && req[1]).toBeLessThanOrEqual(minR(u) + 2);
+		}
+	});
+});

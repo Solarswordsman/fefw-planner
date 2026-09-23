@@ -6,7 +6,7 @@ export default defineConfig({
 	// Served from the site root on Netlify; no sub-path needed.
 	base: "/",
 	test: {
-		// The tested modules (the tested modules) are pure — no DOM needed.
+		// The tested modules (dates, assign, data) are pure — no DOM needed.
 		environment: "node",
 	},
 });
