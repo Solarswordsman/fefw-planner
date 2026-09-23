@@ -1,0 +1,27 @@
+{
+	"name": "fefw-planner",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"description": "Fire Emblem: Fortune's Weave Part I route-planning cheat sheet.",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview",
+		"lint": "eslint .",
+		"test": "vitest run",
+		"test:watch": "vitest"
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@stylistic/eslint-plugin": "^5.10.0",
+		"@types/node": "^26.1.1",
+		"eslint": "^10.5.0",
+		"globals": "^17.6.0",
+		"jsdom": "^29.1.1",
+		"typescript": "^5.9.3",
+		"typescript-eslint": "^8.46.4",
+		"vite": "^8.0.16",
+		"vitest": "^4.1.9"
+	}
+}

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fortune's Weave — Part I Cheat Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+/* ---------- tokens ---------- */
+:root{
+  --bg:#f6f4ee; --bg2:#ffffff; --ink:#1d1b17; --ink2:#5d574d; --ink3:#948d80; --line:#e2ddd2; --line2:#cfc8ba;
+  --cai:#c7641f; --die:#a12c2c; --the:#2f5f8f; --leda:#6b3f9c;
+  --warn:#b45309; --warnbg:#fdf1e2; --danger:#b91c1c; --dangerbg:#fdecec; --ok:#2f7a4a; --okbg:#e7f4ec;
+  --accent:var(--the);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#15171c; --bg2:#1d2027; --ink:#eceae4; --ink2:#b8b3a8; --ink3:#7d786e; --line:#2b2f38; --line2:#3a3f4b;
+    --cai:#e9853f; --die:#e05656; --the:#5b93cf; --leda:#a778d9;
+    --warn:#f0a94b; --warnbg:#2b2216; --danger:#f06a6a; --dangerbg:#2f1a1a; --ok:#63c58a; --okbg:#17291e;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15171c; --bg2:#1d2027; --ink:#eceae4; --ink2:#b8b3a8; --ink3:#7d786e; --line:#2b2f38; --line2:#3a3f4b;
+  --cai:#e9853f; --die:#e05656; --the:#5b93cf; --leda:#a778d9;
+  --warn:#f0a94b; --warnbg:#2b2216; --danger:#f06a6a; --dangerbg:#2f1a1a; --ok:#63c58a; --okbg:#17291e;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 120px);height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Figtree,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.45;font-feature-settings:"tnum" 1;height:100%}
+*{box-sizing:border-box}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---------- header / nav ---------- */
+header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding:calc(env(safe-area-inset-top,0px) + 10px) 14px 0}
+.title{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:8px}
+.title h1{font-size:15px;font-weight:700;margin:0;letter-spacing:.01em;color:var(--ink2)}
+.title h1 b{color:var(--ink);font-weight:800}
+.theme{font-size:12px;color:var(--ink3);padding:4px 8px;border-radius:6px;border:1px solid var(--line)}
+.lords{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px}
+.lord{padding:9px 4px 8px;border-radius:10px;border:1.5px solid var(--line);text-align:center;font-weight:700;font-size:14px;line-height:1;color:var(--ink2);position:relative}
+.lord small{display:block;font-weight:500;font-size:10.5px;color:var(--ink3);margin-top:4px}
+.lord.on{color:#fff;border-color:transparent}
+.lord[data-r="cai"].on{background:var(--cai)} .lord[data-r="die"].on{background:var(--die)}
+.lord[data-r="the"].on{background:var(--the)} .lord[data-r="leda"].on{background:var(--leda)}
+.lord.on small{color:rgba(255,255,255,.8)}
+.secs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin:0 -14px;padding:0 14px}
+.secs::-webkit-scrollbar{display:none}
+.sec{flex:0 0 auto;padding:8px 11px 10px;font-size:14px;font-weight:600;color:var(--ink3);border-bottom:2.5px solid transparent;white-space:nowrap}
+.sec.on{color:var(--accent);border-color:var(--accent)}
+
+/* ---------- content ---------- */
+main{padding:14px 14px 40px;max-width:720px;margin:0 auto}
+h2{font-size:22px;font-weight:800;letter-spacing:-.01em;margin:6px 0 4px}
+.lede{color:var(--ink2);font-size:14px;margin:0 0 14px}
+.lede b{color:var(--ink)}
+.hidden{display:none!important}
+
+/* timeline */
+.tl{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:10px 8px 6px;margin-bottom:16px;overflow-x:auto}
+.tl svg{display:block;min-width:520px;width:100%;height:auto}
+.tl .legend{font-size:11.5px;color:var(--ink3);padding:6px 4px 2px;display:flex;gap:14px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:5px}
+
+/* paralogue list */
+.plist{list-style:none;margin:0;padding:0}
+.p{padding:14px 0 14px 14px;border-top:1px solid var(--line);border-left:4px solid var(--line2);display:grid;grid-template-columns:1fr auto;gap:4px 10px}
+.p.tight{border-left-color:var(--danger)}
+.p.watch{border-left-color:var(--warn)}
+.p.done{opacity:.5}
+.p .when{grid-column:1;font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.05}
+.p .when span{color:var(--ink3);font-weight:500;font-size:15px;margin:0 6px}
+.p .when .or{display:block;font-size:13px;color:var(--ink2);font-weight:600;margin-top:2px}
+.p .name{grid-column:1;font-weight:700;font-size:15px}
+.p .name small{color:var(--ink2);font-weight:500}
+.p .meta{grid-column:1;font-size:13.5px;color:var(--ink2)}
+.p .meta b{color:var(--ink);font-weight:600}
+.p .note{grid-column:1;font-size:13.5px;margin-top:4px;padding:8px 10px;border-radius:8px;background:var(--warnbg);color:var(--ink)}
+.p.tight .note{background:var(--dangerbg)}
+.p .chk{grid-column:2;grid-row:1 / span 5;align-self:start}
+.chk{width:30px;height:30px;border-radius:8px;border:2px solid var(--line2);display:grid;place-items:center;color:transparent;font-weight:800;flex:0 0 auto}
+.chk.on{background:var(--ok);border-color:var(--ok);color:#fff}
+.ch{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 7px;border-radius:5px;background:var(--line);color:var(--ink2);vertical-align:2px;margin-left:6px}
+
+/* recruits */
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13.5px;color:var(--ink2);margin:0 0 12px}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:8px;overflow:hidden}
+.seg button{padding:5px 10px;font-size:13px;font-weight:600;color:var(--ink2)}
+.seg button.on{background:var(--accent);color:#fff}
+.rgroup{margin:18px 0 6px;font-size:13px;font-weight:700;color:var(--ink3);display:flex;align-items:center;gap:8px}
+.rgroup::after{content:"";flex:1;height:1px;background:var(--line)}
+.rlist{list-style:none;margin:0;padding:0}
+.r{display:grid;grid-template-columns:44px 1fr auto;gap:2px 10px;padding:10px 0;border-top:1px solid var(--line);align-items:center}
+.r:first-child{border-top:0}
+.r .rr{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1;text-align:center}
+.r .rr small{display:block;font-size:10.5px;font-weight:600;color:var(--ink3);letter-spacing:.02em;margin-top:2px}
+.r .rn{font-weight:700;font-size:15.5px}
+.r .rx{font-size:13px;color:var(--ink2)}
+.r .rx b{color:var(--ink);font-weight:600}
+.r .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 6px;border-radius:5px;margin-left:6px;vertical-align:1px}
+.tag.here{background:var(--accent);color:#fff}
+.tag.else{background:var(--line);color:var(--ink2)}
+.tag.gate{background:var(--warnbg);color:var(--warn)}
+.r .others{grid-column:2;font-size:12px;color:var(--ink3);margin-top:1px}
+.r .others em{font-style:normal;font-weight:600}
+.r.got{opacity:.45}
+.r .chk{grid-column:3;grid-row:1 / span 3}
+.auto .r .rr{font-size:13px;font-weight:700;color:var(--ok);letter-spacing:0}
+
+/* don't miss */
+.dm{list-style:none;margin:0;padding:0}
+.dm li{padding:12px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:2px 12px}
+.dm li:first-child{border-top:0}
+.dm .w{font-weight:800;font-size:15px;white-space:nowrap;min-width:52px}
+.dm .t{font-size:14.5px}
+.dm .t b{font-weight:700}
+.dm .t small{display:block;color:var(--ink2);font-size:13px;margin-top:2px}
+.dm li.past{opacity:.5}
+.dm li.hot .w{color:var(--danger)}
+h3{font-size:14px;font-weight:700;color:var(--ink3);margin:22px 0 6px;display:flex;align-items:center;gap:8px}
+h3::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* calendar */
+.cal{list-style:none;margin:0;padding:0}
+.cal li{display:grid;grid-template-columns:44px 1fr auto;gap:10px;padding:9px 0;border-top:1px solid var(--line);align-items:baseline}
+.cal li:first-child{border-top:0}
+.cal .c{font-weight:800;font-size:15px}
+.cal .d{font-size:15px;font-weight:600}
+.cal .d small{display:block;font-weight:500;color:var(--ink2);font-size:13px}
+.cal .n{font-size:12.5px;color:var(--ink3);text-align:right}
+.cal li.now .c{color:var(--accent)}
+
+/* data editor */
+textarea{width:100%;min-height:340px;font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--bg2);color:var(--ink);border:1px solid var(--line2);border-radius:10px;padding:10px;resize:vertical}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.btn{padding:9px 14px;border-radius:9px;font-weight:700;font-size:14px;border:1.5px solid var(--line2);color:var(--ink)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.msg{font-size:13px;color:var(--ink2);min-height:18px}
+.src{font-size:12.5px;color:var(--ink3);margin-top:20px;line-height:1.6}
+.src a{color:var(--ink2)}
+.conf{padding:10px 12px;border-radius:8px;background:var(--warnbg);font-size:13.5px;margin:10px 0}
+.conf b{color:var(--warn)}
+@media (prefers-reduced-motion:no-preference){ .chk{transition:background .12s,border-color .12s} }
+</style>
+</head>
+<body>
+<header>
+  <div class="title">
+    <h1><b>Fortune's Weave</b> · Part I cheat sheet</h1>
+    <button class="theme" id="themeBtn" aria-label="Toggle theme">theme</button>
+  </div>
+  <div class="lords" id="lords"></div>
+  <nav class="secs" id="secs"></nav>
+</header>
+<main id="main"></main>
+
+<script>
+/* ============================================================
+   DATA — edit this block (or paste updated JSON in the Data tab).
+   Dates are in-game M/D. Routes: cai, die (Dietrich), the (Theodora), leda.
+   Recruit entries: [support, renown, "extra"] | "auto" | null (not recruitable there)
+   Sources: RPG Site paralogue + recruitment guides + 4 route walkthroughs (Sep 17 2026),
+            KeenGamer recruitment/paralogue tables (Sep 19–22), Game8 walkthrough snippets.
+   ============================================================ */
+const DATA = {
+  version: "2026-09-22",
+  routes: {
+    cai:  { name:"Cai",      sigil:"Fox",   color:"var(--cai)" },
+    die:  { name:"Dietrich", sigil:"Lion",  color:"var(--die)" },
+    the:  { name:"Theodora", sigil:"Wolf",  color:"var(--the)" },
+    leda: { name:"Leda",     sigil:"Eagle", color:"var(--leda)" }
+  },
+
+  /* Free-time windows per chapter (from RPG Site walkthroughs). Used to tag paralogues with chapters. */
+  freeTime: {
+    the:  [[4,"3/1","3/7"],[5,"3/8","3/21"],[6,"3/22","4/20"],[7,"4/21","5/28"],[8,"6/1","6/30"],[9,"7/1","7/31"],[10,"8/25","9/16"],[11,"9/17","10/15"],[12,"10/16","10/24","only 32 turns"]],
+    cai:  [[3,"2/20","2/28"],[4,"3/1","3/7"],[5,"3/15","4/10"],[6,"4/20","5/20"],[7,"6/9","7/9"],[8,"7/20","9/1"],[9,"9/3","9/11","Ultand away"],[10,"9/15","10/15"],[11,"10/16","10/23"],[12,"11/4","11/27","no paralogues"]],
+    die:  [[4,"3/27","4/10"],[5,"4/11","4/30"],[6,"5/4","5/28"],[7,"5/30","6/15"],[8,"6/15","7/21","then Cetus hunt 7/21–7/31"],[9,"8/10","9/19"],[10,"9/29","10/4","very short"],[11,"10/5","11/3"],[12,"11/4","11/27","no paralogues"]],
+    leda: [[4,"3/21","4/4"],[5,"4/7","5/7"],[6,"5/9","5/28"],[7,"5/29","6/28"],[8,"6/30","7/9"],[9,"7/12","9/1","skips most of Sept"],[10,"9/28","10/15"],[11,"10/16","11/6"],[12,"11/7","11/27","no paralogues"]]
+  },
+
+  /* Paralogues. windows: list of [start,end] pickup windows; deadline: last day to finish. */
+  paralogues: [
+    { id:"leda", name:"Diversionary Tactics", char:"Leda", from:"Leda, Temple Row", reward:"Silver Shield",
+      note:"Battle is fixed to 9/8. You must talk to Leda by 9/7 at the latest — you cannot skip forward to 9/8 yourself. Simplest paralogue; watch poison.",
+      routes:{ die:{windows:[["9/2","9/8"]],deadline:"9/8"}, the:{windows:[["9/2","9/8"]],deadline:"9/8"} } },
+    { id:"theo", name:"Missing Brave-Warrior Statue", char:"Theodora", from:"Bonaventure, Temple Row", reward:"Pilum",
+      note:"Fog of war. Stand on 3 mechanisms (SE, SW, NW). Dietrich-only.",
+      routes:{ die:{windows:[["9/3","9/12"]],deadline:"9/15"} } },
+    { id:"bert", name:"Friendly Match with Brigid's King", char:"Bertrand", from:"Gabriel, Arena Square", reward:"Extra Large Bullion",
+      note:"Kill 4 Giants before Peppe's group. Battle starts 9pm the day you accept. Needed for Peppe (Cai/Die/The) and Gaitz (Die).",
+      routes:{ cai:{windows:[["9/17","9/25"]],deadline:"9/25"}, die:{windows:[["9/17","9/17"]],deadline:"9/17",flag:"ONE DAY ONLY"}, the:{windows:[["9/17","9/25"]],deadline:"9/25"} } },
+    { id:"tali", name:"Secret of the Vanished Carriage", char:"Talimun", from:"Talimun, near the Port", reward:"Cleansing Blade",
+      note:"Thieves grab cargo and run for the top exit — keep a fast unit back. Needed for Ursula.",
+      routes:{ cai:{windows:[["9/17","9/22"],["10/1","10/10"]],deadline:"10/12"},
+               die:{windows:[["9/17","9/22"],["10/1","10/10"]],deadline:"10/12",flag:"Ch9 free time ends 9/19, so the first window is really 9/17–9/19; Ch10 is 9/29–10/4."},
+               the:{windows:[["9/17","9/22"],["10/1","10/10"]],deadline:"10/12"} } },
+    { id:"anna", name:"Golden Secret", char:"Anna", from:"Anna, Dagsion Summit", reward:"Orichalcum",
+      note:"Small deployment; bring Physic + anti-armor. Don't let Solel fight the Giant; break the last ore deposit to stun it.",
+      routes:{ cai:{windows:[["9/24","10/5"]],deadline:"10/5"}, die:{windows:[["9/29","10/5"]],deadline:"10/5",flag:"Do it ASAP — Ch10 free time is only 9/29–10/4."}, the:{windows:[["9/24","10/5"]],deadline:"10/5"} } },
+    { id:"anat", name:"Queen of the Erased", char:"Anatolia", from:"Anatolia, City Streets", reward:"Electron Agitator (+Spellshard & Dew of Peace if all villagers live)",
+      note:"Hardest paralogue (Pentkehydra). You don't need to kill the boss. Escort villagers E then N counter-clockwise. Needed for Sha Lan.",
+      routes:{ die:{windows:[["10/5","10/14"]],deadline:"10/17"}, leda:{windows:[["10/5","10/14"]],deadline:"10/17"} } },
+    { id:"cai", name:"Great Escape", char:"Cai", from:"Cai, City Streets", reward:"Gem Box",
+      note:"Battle is fixed to 10/22 in Dagsion — talk to Cai by 10/21 at the latest. Beeline Centurio. Needed for Tialla.",
+      routes:{ die:{windows:[["10/16","10/22"]],deadline:"10/22"}, the:{windows:[["10/16","10/22"]],deadline:"10/22",flag:"Do this LAST in Ch12 (fixed 10/22 date eats your turns)."}, leda:{windows:[["10/16","10/22"]],deadline:"10/22"} } },
+    { id:"diet", name:"Sealed-Off Past", char:"Dietrich", from:"Fabio, near the Arena", reward:"Salamander ×2",
+      note:"10-turn defense. Archers on the E side for Pegasus Knights. Needed for Fabio (Leda).",
+      routes:{ the:{windows:[["10/16","10/24"]],deadline:"10/24",flag:"Quest page says 11/1 but Theodora's Part I ends 10/24."},
+               leda:{windows:[["10/16","10/22"]],deadline:"11/1",flag:"Sources disagree on pickup end: 10/22 (paralogue guide) vs 10/29 (Leda walkthrough). Grab it by 10/22 to be safe."} } },
+    { id:"orch", name:"Orchel's Regret", char:"Orchel", from:"Orchel, Lower Temple Row", reward:"Healing Staff",
+      note:"Biggest map. Split up, hit both switches together to fire the Onager. Pegasus reinforcements E. Chests are just Pure Water. Needed for Diego on every route.",
+      routes:{ cai:{windows:[["10/18","10/20"]],deadline:"10/21",flag:"Only 3 pickup days on Cai's route."},
+               die:{windows:[["10/18","10/25"]],deadline:"10/27"},
+               the:{windows:[["10/18","10/24"]],deadline:"10/24",flag:"Quest page says 10/27 but Theodora's Part I ends 10/24."},
+               leda:{windows:[["10/18","10/25"]],deadline:"10/27"} } }
+  ],
+
+  /* Recruits. Format: [Support, Renown, extra]. "auto" = joins automatically. null = not recruitable on that route in Part I. */
+  recruits: [
+    { n:"Cai",         cai:"auto", die:null, the:null, leda:null },
+    { n:"Tialla",      cai:"auto", die:[3,9,"Cai's Paralogue, 3000G"], the:[3,10,"Cai's Paralogue, 3000G"], leda:[3,8,"Cai's Paralogue, 3000G"], gate:"cai" },
+    { n:"Peter",       cai:"auto", die:[3,8,"Quest"], the:[3,7,"Quest"], leda:[3,10,"Quest"] },
+    { n:"Ultand",      cai:"auto (Ch6)", die:[3,5,"Quest"], the:[3,6,"Quest"], leda:[3,8,"Quest"] },
+    { n:"Gaitz",       cai:null, die:[3,10,"Bertrand's Paralogue + Bertrand's team eliminated (~Ch12)"], the:null, leda:null, gate:"bert" },
+    { n:"Jester",      cai:[3,10,"3× Quest"], die:[3,6,"3× Quest"], the:[3,9,"3× Quest"], leda:[3,10,"3× Quest"] },
+    { n:"Goliath",     cai:[3,7,"3× Giant's Meat"], die:[3,6,"3× Giant's Meat"], the:[3,9,"3× Giant's Meat"], leda:[3,10,"3× Giant's Meat"], tip:"Giant's Meat: one always in Sand-Shadow Fort, or Giant-icon skirmishes." },
+    { n:"Dante",       cai:[3,10,"8000G"], die:[2,8,"8000G"], the:[3,6,"8000G"], leda:[3,10,"8000G"] },
+    { n:"Dietrich",    cai:null, die:"auto", the:null, leda:null },
+    { n:"Fabio",       cai:null, die:"auto", the:null, leda:[3,9,"Dietrich's Paralogue + Dietrich's team eliminated (~Ch12) + suitable item (a Da Mina weapon works)"], gate:"diet" },
+    { n:"Esmeralda",   cai:[3,7,"Quest"], die:"auto", the:[3,9,"Quest"], leda:[3,6,"Quest"] },
+    { n:"Mikaela",     cai:[3,5,"3000G"], die:"auto", the:[3,8,"3000G"], leda:[3,6,"3000G"] },
+    { n:"Diego",       cai:[3,10,"Orchel's Paralogue"], die:[3,9,"Orchel's Paralogue"], the:[2,8,"Orchel's Paralogue"], leda:[3,8,"Orchel's Paralogue"], gate:"orch" },
+    { n:"Loretta",     cai:[3,7,"3× Iron Sword"], die:[3,9,"3× Iron Sword"], the:[3,5,"3× Iron Sword"], leda:[3,5,"3× Iron Sword"] },
+    { n:"Seteth",      cai:[3,6,"Quest"], die:null, the:[3,6,"Quest"], leda:[3,10,"Quest"] },
+    { n:"Ninae",       cai:[3,6,"1× Paradise Fish"], die:[3,8,"1× Paradise Fish"], the:[3,6,"1× Paradise Fish"], leda:[3,6,"1× Paradise Fish"], tip:"Paradise Fish: Lake Brontes (Saveilon), past Valhalla Mine.", conflict:"Leda: RPG Site says 6R, KeenGamer says 8R." },
+    { n:"Theodora",    cai:null, die:null, the:"auto", leda:null },
+    { n:"Bonaventure", cai:null, die:null, the:"auto", leda:null },
+    { n:"Tobias",      cai:null, die:null, the:"auto", leda:null },
+    { n:"Lilian",      cai:[2,8,"5000G"], die:[2,8,"5000G"], the:"auto", leda:[2,7,"5000G"] },
+    { n:"Lysander",    cai:[3,8,"5× Iron Spear"], die:[3,6,"5× Iron Spear"], the:"auto", leda:[3,7,"5× Iron Spear"] },
+    { n:"Ursula",      cai:[3,10,"Talimun's Paralogue, answer Yes ×3"], die:[3,7,"Talimun's Paralogue, answer Yes ×3"], the:[3,9,"Talimun's Paralogue, answer Yes ×3"], leda:null, gate:"tali" },
+    { n:"Ludia",       cai:[3,9,"Quest"], die:[3,9,"Quest"], the:[3,7,"Quest"], leda:[3,7,"Quest"] },
+    { n:"Simon",       cai:[3,8,"Coin flip → Tails"], die:[3,7,"Coin flip → Tails"], the:[3,7,"Coin flip → Tails"], leda:[3,6,"Coin flip → Tails"] },
+    { n:"Fianna",      cai:[3,8,"3000G"], die:[3,7,"3000G"], the:[3,9,"3000G"], leda:[3,5,"3000G"] },
+    { n:"Leda",        cai:null, die:null, the:null, leda:"auto" },
+    { n:"Buccar",      cai:null, die:[3,8,"Leda's Paralogue"], the:[3,8,"Leda's Paralogue"], leda:"auto", gate:"leda" },
+    { n:"Sirocco",     cai:[3,9,"Quest"], die:[3,9,"Quest"], the:[1,5,"Quest"], leda:"auto" },
+    { n:"Olympia",     cai:[3,8,"3× Quest"], die:[3,6,"3× Quest"], the:[3,9,"3× Quest"], leda:"auto" },
+    { n:"Mu",          cai:[3,9,"3× Glirmosa"], die:[3,7,"3× Glirmosa"], the:[3,9,"3× Glirmosa"], leda:"auto", tip:"Glirmosa: Mount Orgus Trail, Rear Mountain Path, Forest of No Return, Giant's Mount (Pasithea)." },
+    { n:"Nezha",       cai:[3,6,"3× Sandworm Meat"], die:[3,10,"3× Sandworm Meat"], the:[2,6,"3× Sandworm Meat"], leda:[3,9,"3× Sandworm Meat"], team:"Anatolia" },
+    { n:"Sha Lan",     cai:null, die:[3,10,"Anatolia's Paralogue; answer Saramis, Da Mina, Grounded Ship"], the:null, leda:[3,8,"Anatolia's Paralogue; answer Saramis, Da Mina, Grounded Ship"], gate:"anat", team:"Anatolia" },
+    { n:"Dadao",       cai:[3,7,"2× Kothar Gar"], die:[3,10,"2× Kothar Gar"], the:[2,5,"2× Kothar Gar"], leda:[2,5,"2× Kothar Gar"], team:"Anatolia" },
+    { n:"Halvin",      cai:[3,9,"10× Dates"], die:[3,9,"10× Dates"], the:[3,7,"10× Dates"], leda:[3,7,"10× Dates"], team:"Anatolia", conflict:"Cai: RPG Site says 9R, KeenGamer says 5R." },
+    { n:"Guzran",      cai:"auto (tutorial)", die:[3,8,""], the:[3,8,""], leda:[1,3,""] },
+    { n:"Yang Jie",    cai:[2,3,"answer Cheese, Moon, Potatoes"], die:"auto (tutorial)", the:[3,9,"answer Cheese, Moon, Potatoes"], leda:[3,8,"answer Cheese, Moon, Potatoes"] },
+    { n:"Io",          cai:[3,10,"4000G"], die:[2,3,"800G"], the:[3,10,"4000G"], leda:[1,6,"1500G"] },
+    { n:"Peppe",       cai:[1,9,"Bertrand's Paralogue"], die:[3,8,"Bertrand's Paralogue"], the:[2,7,"Bertrand's Paralogue"], leda:null, gate:"bert" },
+    { n:"Noctula",     cai:[1,4,""], die:[1,6,""], the:[1,3,""], leda:[3,8,""] },
+    { n:"Sofia",       cai:[3,9,""], die:[3,9,""], the:"auto (tutorial)", leda:[3,7,""] },
+    { n:"Catania",     cai:[3,10,""], die:[1,8,""], the:[3,7,""], leda:"auto (tutorial)" },
+    { n:"Nydine",      cai:[1,6,"2× Bronze Axe"], die:[2,5,"2× Bronze Axe"], the:[3,5,"3× Iron Axe"], leda:[3,10,"3× Iron Axe"] },
+    { n:"Zarcone",     cai:[3,8,"Negotiate (can go to 10G)"], die:[3,7,"Negotiate"], the:[1,4,"Negotiate"], leda:[2,5,"Negotiate"] },
+    { n:"Majide",      cai:[2,5,"Answer his question 3×"], die:[3,8,"Answer 3×"], the:[3,8,"Answer 3×"], leda:[3,9,"Answer 3×"] },
+    { n:"Benditz",     cai:[3,9,""], die:[2,7,""], the:[1,8,""], leda:[3,7,""], appears:"~4/11" },
+    { n:"Inyoni",      cai:[3,8,"6000G"], die:[3,8,"6000G"], the:[1,9,"4000G"], leda:[1,7,"3000G"], appears:"~7/10" },
+    { n:"Jasmine",     cai:[1,8,"2000G"], die:[3,9,"5000G"], the:[3,8,"5000G"], leda:[2,4,"500G"], appears:"~5/8" },
+    { n:"Alexandra",   cai:[2,7,""], die:[3,8,""], the:[1,6,""], leda:[3,10,""], appears:"~5/29" },
+    { n:"Nuzzuo",      cai:[2,6,"3× Iron Bow"], die:[1,9,"2× Iron Bow"], the:[1,6,"3× Iron Bow"], leda:[3,9,"3× Iron Bow"], appears:"~7/1" },
+    { n:"Kiroc",       cai:[3,8,"8× Pure Water"], die:[1,4,"3× Pure Water"], the:[3,10,"8× Pure Water"], leda:[1,4,"3× Pure Water"], appears:"~5/4" }
+  ],
+
+  /* Route-specific things that would suck to miss. when = chapter number or "all". hot = easy to lose. */
+  dontMiss: {
+    the: [
+      { ch:5,  t:"Send Supplies quests (Theodora-only) all expire 10/24, the very last day of her route.", s:"Ch8 Ladon Loach ×35 → Cataphract class. Ch9 Kothar Gar ×10 → Guardian. Ch11 Sea-Star Stone ×35 → Dragoon." },
+      { ch:6,  t:"Special Match: Exhibition vs Bertrand on 4/6 at 18:00, path between Temple Row and Hightown.", s:"Theodora-exclusive. You only need to damage him, not kill him.", hot:true },
+      { ch:7,  t:"Optional scene: talk to Alexandra in City Streets, then the pulsing event in Lowtown.", s:"Scenes are tracked at the Obelisk Chamber pedestal." },
+      { ch:7,  t:"Enno Isle (lv 24) dungeon is Theodora-exclusive — ship required.", s:"Good chapter to sail the Danann Sea; Carna Bonito for Send Supplies is at Peluza Cape." },
+      { ch:8,  t:"Theater unlocks at Renown 7, Thermae at Renown 8 (all routes).", s:"Both raise support — Stage Shows count toward recruitment." },
+      { ch:10, t:"Lend Anatolia your ship (she asks, returns it by 9/21).", s:"Her team then fights alongside you in the Ch12 finale, plus an extra Anatolia scene in Ch11.", hot:true },
+      { ch:10, t:"Optional scene with Orchel in Yu Phas' Temple (via Entertainment District).", s:"Northern Passage also has a new chest this chapter: Phantom Ring." },
+      { ch:10, t:"Before the Talimun main match, 'hear Lilian out' for support.", s:"" },
+      { ch:11, t:"Anatolia's team is NOT in Dagsion during Ch12. Recruit Nezha / Dadao / Halvin in Ch11 or lose them.", s:"Wait until they return with your boat if you lent it. Sha Lan isn't recruitable on Theodora.", hot:true },
+      { ch:11, t:"Ch12 free time is only 32 turns (10/16–10/24) with three paralogues in it. Front-load everything into Ch11.", s:"Great Escape is fixed to 10/22 — do it last. Sealed-Off Past and Orchel's Regret both die at 10/24 no matter what the quest page says.", hot:true },
+      { ch:12, t:"Last chance to recruit anyone on this route.", s:"Theodora-only recruits: Bonaventure, Tobias (auto). Lilian & Lysander are auto here but cost 7–8R elsewhere." }
+    ],
+    cai: [
+      { ch:2,  t:"Choose 'Pursue' after the Event Clash for the Galen Fort Ruins tutorial dungeon (Hunter's Bow inside).", s:"Optional scene with Castor/Centurio to the east in Dagsion before doing anything else." },
+      { ch:4,  t:"Optional scene: Bertrand in the jail (Cai gains Sword EXP).", s:"" },
+      { ch:5,  t:"Mentorships (Cai-only): Castor 'Terrain Tips' → Bolt Gem; Aurora at 4R 'Staying Healthy' → Healing Staff.", s:"Stables/Lure/Farming are Cai-exclusive. Animal bonds give class-relevant stat skills (e.g. Wild Horse lv5 bond → Paired Run+)." },
+      { ch:6,  t:"Optional scene at the mural in Ahm Lu before the main marker.", s:"Mentorships: Bertrand 5R 'Know Your Enemy' → Halberd; Centurio 6R 'Against Large Foes' → Levin Sword." },
+      { ch:7,  t:"Kindness quest 'The Artisans of Megaira' → unlocks carriages (much faster travel). Do it ASAP.", s:"'Trouble at the Gate' opens Hugo Stronghold to reach Castalia. Castor 7R mentorship (2× Angelica) → Caladrius class.", hot:true },
+      { ch:8,  t:"Aurora 8R mentorship 'Special Request from Mom' → Dragoon class.", s:"'Beasts Blocking the Path Home' opens Idyia. Start catching a Wild Pegasus for a Ch11 quest." },
+      { ch:9,  t:"Ultand is unavailable this chapter (back in Ch10). Very short free time 9/3–9/11.", s:"Bertrand 10R mentorship → Advanced License." },
+      { ch:11, t:"Orchel's Regret pickup is only 10/18–10/20 on Cai's route, deadline 10/21.", s:"Cai's Ch11 is 10/16–10/23; nothing else paralogue-wise lands here.", hot:true },
+      { ch:12, t:"Ch12 (11/4–11/27) has no paralogues — pure cleanup and recruiting.", s:"Most Kindness quests run to 11/27. Highest-level Part I dungeon is on the southern continent (Ogmios)." }
+    ],
+    die: [
+      { ch:4,  t:"Optional scene with Talimun (south pulse on the map) after the Tavern — unlocks a second Event Clash that night.", s:"Also: Esmeralda at the Inn; Mikaela & Esmeralda by the Arena → Mikaela/Mu scene in the shops." },
+      { ch:4,  t:"Blacksmith class needs 10 Combat Arts upgraded at Smyrnos's Temple (~400 Magic Echo Shards).", s:"Use Answerer's Cry regularly on the world map to farm shards. Dietrich-only.", hot:true },
+      { ch:5,  t:"Optional scene: talk to Fabio, then the scene in the eastern alleys.", s:"This is a prerequisite for a Ch10 Fabio scene (18:00 near Temple Rows).", hot:true },
+      { ch:5,  t:"Dread Warrior Challenges (Dietrich-only duels) gate on Renown and all end 11/27.", s:"Il-Lara (Ch8) → Guardian class. Oko (Ch10) → Ranger class." },
+      { ch:6,  t:"Optional scene: Alexandra in City Streets → Lowtown event.", s:"" },
+      { ch:8,  t:"Optional scene at 18:00 in the Lowtown alley (comes with an Event Clash).", s:"Cetus hunt 7/21–7/31: clear Uncharted Isle (east) first, then fail-search Pasha Currents, Wandering Whirlpool, Eif Channel before Sea of Screams. Nod to Fabio afterward for support." },
+      { ch:9,  t:"Bertrand's Paralogue is available on 9/17 ONLY. Shortest window in the game.", s:"If you do it 9/17 you can still just reach Talimun's before free time ends 9/19; otherwise Talimun's persists into Ch10/11.", hot:true },
+      { ch:10, t:"Free time is only 9/29–10/4. Do Anna's Paralogue immediately.", s:"Inquire Fabio in the opening scenes for support. Fabio 18:00 scene near Temple Rows if you saw the Ch5 one.", hot:true },
+      { ch:11, t:"Three paralogues here (Anatolia's, Cai's, Orchel's) — the long 10/5–11/3 free time makes this Dietrich's big paralogue chapter.", s:"" },
+      { ch:12, t:"Gaitz becomes recruitable once Bertrand's team is out of the tournament (~Ch12). Needs 3S/10R + Bertrand's Paralogue.", s:"Optional scene with Fabio in the alley east of the markets. No paralogues in Ch12.", hot:true }
+    ],
+    leda: [
+      { ch:4,  t:"Optional scenes: Mikaela in the shopping area; Talimun in the shopping area (not on the very first turn of free time).", s:"Perform Quests (Leda-only) pay huge Renown — do every one." },
+      { ch:4,  t:"Drink-recipe chain: Simple (3R) → Captains' (6R) → Popular (8R) → Elegant (10R, ends 11/17!) → Song of Angels + Ranger & Troubadour classes.", s:"Leaves come from Perform quests: Sweet (Ch4–6), Pepper (Ch7+), Bitter (Ch10), Wonder (Ch11).", hot:true },
+      { ch:5,  t:"Leda-only subquest 'Monster in the Night' — eastern alleys after 18:00, ends 5/7.", s:"Optional scene with Kalla at her shrine." },
+      { ch:6,  t:"Optional scenes: Olympia in Temple Row; Alexandra in City Streets → Lowtown.", s:"" },
+      { ch:7,  t:"Leda-only subquest 'Learning More about Mehdel' from Sirocco, ends 6/28.", s:"" },
+      { ch:9,  t:"18:00 scene with Sirocco in Temple Row, then follow him toward Hightown for a second scene.", s:"'Great Dancer's Successor' (Hingosh from Baina Oasis) → Dancer's Necklace, ends 10/15." },
+      { ch:9,  t:"Leda's story skips 9/2–9/27 entirely. Finish everything ending 9/1 and 10/15 during this long free time.", s:"Leda has no paralogues in September, so nothing is lost there.", hot:true },
+      { ch:10, t:"Lv 30 Trial Battle at Kalla's Main Temple → Kalla's Bow (Leda-only).", s:"Anna's shop starts appearing north of Temple Row." },
+      { ch:11, t:"Fabio becomes recruitable once Dietrich's team is eliminated (~Ch12). Needs Dietrich's Paralogue (grab it 10/16–10/22) + 3S/9R + a Da Mina weapon.", s:"Three paralogues in Ch11 (Cai's, Dietrich's, Orchel's).", hot:true },
+      { ch:12, t:"Ch12 (11/7–11/27) has no paralogues — cleanup and recruiting only.", s:"" }
+    ],
+    all: [
+      { t:"Support levels are GLOBAL and never go down. Hit 3S with someone once and it counts on every route — so the real per-route cost is Renown + the extra item/quest.", s:"Bless levels are global too. Subquests done on one route auto-complete (and pay out) on others." },
+      { t:"Leda's (9/8) and Cai's (10/22) paralogues have fixed battle days. Accept them at least the day before; you can't manually skip to the date.", s:"" },
+      { t:"Watch shrine icons in Temple Row turning yellow — a free audience with a god gives Renown and costs no turn.", s:"Feeding the Pale Raven, praying, Arena training and Inn meals are also free actions." },
+      { t:"Creek (Part II) requires the Part I subquest 'My Late Sister's Accessory'. Subquests are semi-random per route, so keep an eye out on every path.", s:"Nathan (Part II Ch3) then requires Creek to land the killing blow on him." },
+      { t:"Bertrand, Talimun, Anatolia and Orchel only become full Part III units if you cleared their paralogue somewhere in Part I.", s:"A Flame Lord whose paralogue you cleared but whose route you never finished is a 'limited' Part III ally — irrelevant if you do all four routes." },
+      { t:"Anna's shop appears north of Temple Row from Ch10 with rotating rare stock.", s:"" }
+    ]
+  }
+};
+
+/* ============================================================ APP ============================================================ */
+const ROUTES = ["cai","die","the","leda"];
+const SECTIONS = [["para","Paralogues"],["rec","Recruits"],["miss","Don't miss"],["cal","Calendar"],["data","Data"]];
+let data = DATA;
+let state = load("fw_state", { route:"the", sec:"para", tol:0, theme:"" });
+let done = load("fw_done", {});      // paralogue done: key route|id
+let got  = load("fw_got", {});       // recruit got: key name
+try{ const d = load("fw_data", null); if(d && d.recruits) data = d; }catch(e){}
+
+function load(k,def){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):def; }catch(e){ return def; } }
+function save(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+
+/* date helpers: in-game M/D → day-of-year number */
+const MD=[0,31,28,31,30,31,30,31,31,30,31,30,31];
+function dn(s){ const [m,d]=s.split("/").map(Number); let n=0; for(let i=1;i<m;i++) n+=MD[i]; return n+d; }
+function chapterFor(route, day){ const ft=data.freeTime[route]||[]; for(const c of ft){ if(day>=dn(c[1]) && day<=dn(c[2])) return c; } return null; }
+function esc(s){ return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+/* ---------- header ---------- */
+function renderHeader(){
+  document.documentElement.style.setProperty("--accent", data.routes[state.route].color);
+  document.getElementById("lords").innerHTML = ROUTES.map(r=>{
+    const n = data.paralogues.filter(p=>p.routes[r]).length;
+    return `<button class="lord ${r===state.route?"on":""}" data-r="${r}">${data.routes[r].name}<small>${n} paralogues</small></button>`;
+  }).join("");
+  document.getElementById("secs").innerHTML = SECTIONS.map(([k,l])=>`<button class="sec ${k===state.sec?"on":""}" data-s="${k}">${l}</button>`).join("");
+}
+document.getElementById("lords").addEventListener("click",e=>{ const b=e.target.closest(".lord"); if(!b) return; state.route=b.dataset.r; save("fw_state",state); render(); });
+document.getElementById("secs").addEventListener("click",e=>{ const b=e.target.closest(".sec"); if(!b) return; state.sec=b.dataset.s; save("fw_state",state); render(); window.scrollTo({top:0}); });
+document.getElementById("themeBtn").addEventListener("click",()=>{
+  const cur=document.documentElement.dataset.theme||"";
+  const next = cur==="dark" ? "light" : cur==="light" ? "" : "dark";
+  state.theme=next; save("fw_state",state); applyTheme();
+});
+function applyTheme(){ if(state.theme) document.documentElement.dataset.theme=state.theme; else delete document.documentElement.dataset.theme; }
+
+/* ---------- paralogues ---------- */
+function renderPara(r){
+  const R=data.routes[r];
+  const list = data.paralogues.filter(p=>p.routes[r]).map(p=>({p,rt:p.routes[r],start:dn(p.routes[r].windows[0][0])})).sort((a,b)=>a.start-b.start);
+  let h = `<h2>${R.name}'s paralogues</h2><p class="lede">${list.length} available on this route. Dates are the <b>pickup window</b> — talk to the quest-giver then. Red bar = brutal window, amber = read the note.</p>`;
+  h += timeline(r, list);
+  h += `<ul class="plist">` + list.map(({p,rt})=>{
+    const key=r+"|"+p.id, isDone=!!done[key];
+    const days = rt.windows.reduce((n,[a,b])=>n+(dn(b)-dn(a)+1),0);
+    const cls = (days<=3||/ONLY|ends 10\/24|Ch12/.test(rt.flag||"")) ? "tight" : rt.flag ? "watch" : "";
+    const wins = rt.windows.map(([a,b],i)=>{
+      const ch=chapterFor(r,dn(a));
+      const chTag = ch?`<span class="ch">Ch${ch[0]}</span>`:"";
+      const txt = a===b ? `${a}` : `${a}<span>–</span>${b}`;
+      return i===0 ? `${txt}${chTag}` : `<span class="or">or ${a}–${b}${chTag}</span>`;
+    }).join("");
+    return `<li class="p ${cls} ${isDone?"done":""}">
+      <div class="when">${wins}</div>
+      <div class="name">${esc(p.name)} <small>· ${esc(p.char)}'s</small></div>
+      <div class="meta"><b>Finish by ${esc(rt.deadline)}</b> · from ${esc(p.from)} · ${esc(p.reward)}</div>
+      ${rt.flag?`<div class="note">${esc(rt.flag)}</div>`:""}
+      <div class="meta" style="margin-top:4px">${esc(p.note)}</div>
+      <button class="chk ${isDone?"on":""}" data-done="${key}" aria-label="Mark done">✓</button>
+    </li>`;
+  }).join("") + `</ul>`;
+  return h;
+}
+function timeline(r, list){
+  const start=dn("8/25"), end=dn("11/6"); const W=560, L=8, Rr=8, H=18*list.length+56;
+  const x=d=>L+(d-start)/(end-start)*(W-L-Rr);
+  let s=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Paralogue timeline">`;
+  // free time blocks
+  (data.freeTime[r]||[]).forEach(c=>{ const a=Math.max(dn(c[1]),start), b=Math.min(dn(c[2]),end); if(b<a) return;
+    s+=`<rect x="${x(a)}" y="18" width="${x(b+1)-x(a)}" height="${H-40}" fill="var(--accent)" opacity=".07"/>`;
+    s+=`<text x="${x(a)+3}" y="13" font-size="10" font-weight="700" fill="var(--ink3)">Ch${c[0]}</text>`; });
+  // month ticks
+  [["9/1","Sep 1"],["9/15","15"],["10/1","Oct 1"],["10/15","15"],["11/1","Nov 1"]].forEach(([d,l])=>{ s+=`<line x1="${x(dn(d))}" y1="18" x2="${x(dn(d))}" y2="${H-22}" stroke="var(--line2)" stroke-dasharray="2 3"/><text x="${x(dn(d))+2}" y="${H-8}" font-size="10" fill="var(--ink3)">${l}</text>`; });
+  list.forEach(({p,rt},i)=>{ const y=26+i*18;
+    const days=rt.windows.reduce((n,[a,b])=>n+(dn(b)-dn(a)+1),0);
+    const col = days<=3 ? "var(--danger)" : rt.flag ? "var(--warn)" : "var(--accent)";
+    rt.windows.forEach(([a,b])=>{ const w=Math.max(x(dn(b)+1)-x(dn(a)),4); s+=`<rect x="${x(dn(a))}" y="${y}" width="${w}" height="10" rx="2" fill="${col}"/>`; });
+    const dl=dn(rt.deadline); s+=`<line x1="${x(dl)+ (x(dl+1)-x(dl))}" y1="${y-2}" x2="${x(dl)+(x(dl+1)-x(dl))}" y2="${y+12}" stroke="${col}" stroke-width="1.5"/>`;
+    const lastEnd=dn(rt.windows[rt.windows.length-1][1]); const tx=Math.min(x(Math.max(lastEnd,dl)+1)+4, W-90);
+    s+=`<text x="${tx}" y="${y+9}" font-size="10.5" font-weight="600" fill="var(--ink2)">${esc(p.char)}</text>`; });
+  s+=`</svg>`;
+  return `<div class="tl">${s}<div class="legend"><span><i style="background:var(--accent)"></i>pickup window</span><span><i style="background:var(--danger)"></i>3 days or less</span><span><i style="background:var(--warn)"></i>see note</span><span>| finish-by deadline</span><span>shaded = free time</span></div></div>`;
+}
+
+/* ---------- recruits ---------- */
+function assign(tol){
+  // Greedy: each non-auto unit → its cheapest-renown route; ties (within tol) go to the route with fewest assignments so far.
+  const count={cai:0,die:0,the:0,leda:0}; const out={};
+  const units=data.recruits.filter(u=>ROUTES.some(r=>Array.isArray(u[r])) && !ROUTES.some(r=>typeof u[r]==="string"));
+  // constrained units first (fewer routes, then higher min renown)
+  units.sort((a,b)=>{ const ra=ROUTES.filter(r=>Array.isArray(a[r])).length, rb=ROUTES.filter(r=>Array.isArray(b[r])).length; if(ra!==rb) return ra-rb; return minR(b)-minR(a); });
+  for(const u of units){
+    if(got[u.n]) continue;
+    const cand=ROUTES.filter(r=>Array.isArray(u[r]));
+    const best=Math.min(...cand.map(r=>u[r][1]));
+    const tied=cand.filter(r=>u[r][1]<=best+tol).sort((a,b)=>{ if(u[a][1]!==u[b][1]) return u[a][1]-u[b][1]; if(count[a]!==count[b]) return count[a]-count[b]; return u[a][0]-u[b][0]; });
+    // among tied-within-tol, prefer fewest assigned, then lower renown
+    tied.sort((a,b)=>count[a]-count[b] || u[a][1]-u[b][1] || u[a][0]-u[b][0]);
+    out[u.n]=tied[0]; count[tied[0]]++;
+  }
+  return {out,count};
+}
+function minR(u){ return Math.min(...ROUTES.filter(r=>Array.isArray(u[r])).map(r=>u[r][1])); }
+function renderRec(r){
+  const R=data.routes[r]; const {out,count}=assign(state.tol);
+  const auto=data.recruits.filter(u=>typeof u[r]==="string");
+  const rec=data.recruits.filter(u=>Array.isArray(u[r])).sort((a,b)=>a[r][1]-b[r][1]||a[r][0]-b[r][0]||a.n.localeCompare(b.n));
+  const mine=rec.filter(u=>out[u.n]===r);
+  let h=`<h2>${R.name}'s recruits</h2>
+  <p class="lede">Sorted by Renown needed here. <b>Get here</b> = this is the cheapest route for that unit (ties go to whichever route has fewer easy recruits, so Cai fills up). Support is global across your save, so 3S only has to be earned once.</p>
+  <div class="ctrl">Tie tolerance <span class="seg"><button data-tol="0" class="${state.tol===0?"on":""}">exact</button><button data-tol="1" class="${state.tol===1?"on":""}">±1 R</button><button data-tol="2" class="${state.tol===2?"on":""}">±2 R</button></span>
+  <span>Plan: ${ROUTES.map(x=>`${data.routes[x].name} ${count[x]}`).join(" · ")}</span></div>`;
+  h+=`<div class="rgroup">Get on this route (${mine.length})</div><ul class="rlist">`+mine.map(u=>row(u,r,out,true)).join("")+`</ul>`;
+  const rest=rec.filter(u=>out[u.n]!==r);
+  h+=`<div class="rgroup">Also recruitable here, cheaper elsewhere (${rest.length})</div><ul class="rlist">`+rest.map(u=>row(u,r,out,false)).join("")+`</ul>`;
+  h+=`<div class="rgroup">Automatic on ${R.name}'s route (${auto.length})</div><ul class="rlist auto">`+auto.map(u=>`<li class="r"><div class="rr">${esc(u[r])}</div><div class="rn">${esc(u.n)}</div></li>`).join("")+`</ul>`;
+  const na=data.recruits.filter(u=>u[r]===null && ROUTES.some(x=>u[x]!==null && x!==r) && !(typeof u[r]==="string"));
+  h+=`<div class="rgroup">Not recruitable here</div><p class="lede" style="margin-top:6px">${na.map(u=>esc(u.n)).join(", ")}</p>`;
+  return h;
+}
+function row(u,r,out,here){
+  const [s,ren,extra]=u[r]; const isGot=!!got[u.n];
+  const others=ROUTES.filter(x=>x!==r&&Array.isArray(u[x])).map(x=>`${data.routes[x].name} ${u[x][1]}R/${u[x][0]}S`).join(" · ");
+  const gate=u.gate?`<span class="tag gate">needs ${data.paralogues.find(p=>p.id===u.gate)?.char}'s paralogue</span>`:"";
+  const where=isGot?"":here?`<span class="tag here">Get here</span>`:out[u.n]?`<span class="tag else">→ ${data.routes[out[u.n]].name}</span>`:"";
+  const notes=[extra, u.appears?`appears ${u.appears}`:"", u.tip||"", u.conflict?`⚠ ${u.conflict}`:""].filter(Boolean);
+  return `<li class="r ${isGot?"got":""}"><div class="rr">${ren}<small>${s}S</small></div>
+    <div><div class="rn">${esc(u.n)}${where}${gate}</div><div class="rx">${notes.map(esc).join(" · ")}</div></div>
+    <div class="others">${others?`elsewhere: ${esc(others)}`:"<em>only recruitable on this route</em>"}</div>
+    <button class="chk ${isGot?"on":""}" data-got="${esc(u.n)}" aria-label="Mark recruited">✓</button></li>`;
+}
+
+/* ---------- don't miss ---------- */
+function renderMiss(r){
+  const R=data.routes[r]; const items=(data.dontMiss[r]||[]).slice().sort((a,b)=>a.ch-b.ch);
+  let h=`<h2>Don't miss — ${R.name}</h2><p class="lede">Route-specific scenes, unlocks and traps, in chapter order. Red chapters are the ones people actually lose.</p>`;
+  h+=`<ul class="dm">`+items.map(i=>`<li class="${i.hot?"hot":""}"><div class="w">Ch${i.ch}</div><div class="t"><b>${esc(i.t)}</b>${i.s?`<small>${esc(i.s)}</small>`:""}</div></li>`).join("")+`</ul>`;
+  h+=`<h3>Every route</h3><ul class="dm">`+(data.dontMiss.all||[]).map(i=>`<li><div class="w">All</div><div class="t"><b>${esc(i.t)}</b>${i.s?`<small>${esc(i.s)}</small>`:""}</div></li>`).join("")+`</ul>`;
+  return h;
+}
+
+/* ---------- calendar ---------- */
+function renderCal(r){
+  const R=data.routes[r]; const ft=data.freeTime[r]||[];
+  let h=`<h2>${R.name}'s free time</h2><p class="lede">When you actually control the calendar. Paralogue windows that straddle a gap are cut off at the chapter end.</p><ul class="cal">`;
+  h+=ft.map(c=>{ const ps=data.paralogues.filter(p=>p.routes[r]&&p.routes[r].windows.some(([a,b])=>dn(a)<=dn(c[2])&&dn(b)>=dn(c[1]))).map(p=>p.char);
+    return `<li><div class="c">Ch${c[0]}</div><div class="d">${c[1]} – ${c[2]}${c[3]?`<small>${esc(c[3])}</small>`:""}${ps.length?`<small>Paralogues: ${ps.join(", ")}</small>`:""}</div><div class="n">${dn(c[2])-dn(c[1])+1} days</div></li>`; }).join("");
+  return h+`</ul>`;
+}
+
+/* ---------- data editor ---------- */
+function renderData(){
+  const conflicts=data.recruits.filter(u=>u.conflict).map(u=>`<b>${esc(u.n)}</b>: ${esc(u.conflict)}`);
+  return `<h2>Data</h2><p class="lede">The whole sheet is one JSON object. Edit it here (or in the file's DATA block) and <b>Save</b> — it's kept in this browser only. <b>Reset</b> returns to the built-in data (v${esc(data.version)}).</p>
+  <div class="conf"><b>Known source conflicts</b><br>${conflicts.join("<br>")}<br>Dietrich's Sealed-Off Past pickup on Leda: 10/22 vs 10/29 (see paralogue note).</div>
+  <textarea id="json" spellcheck="false">${esc(JSON.stringify(data,null,1))}</textarea>
+  <div class="btns"><button class="btn pri" id="saveJson">Save data</button><button class="btn" id="resetJson">Reset to built-in</button><button class="btn" id="clearProg">Clear my checkmarks</button></div>
+  <div class="msg" id="msg"></div>
+  <p class="src">Sources: RPG Site — <a href="https://www.rpgsite.net/guide/21387-fire-emblem-fortunes-weave-paralogues-how-to-access-all-paralogue-battles-and-where-to-find-them">Paralogues</a>, <a href="https://www.rpgsite.net/guide/21391-fire-emblem-fortunes-weave-recruitment-guide-all-characters-in-game-how-to-recruit-them">Recruitment</a>, and the four Part I path walkthroughs (Theodora, Cai, Dietrich, Leda). KeenGamer — <a href="https://www.keengamer.com/articles/guides/fire-emblem-fortunes-weave-all-characters-recruitment-guide/">Recruitment</a>, <a href="https://www.keengamer.com/articles/guides/fire-emblem-fortunes-weave-all-paralogues-list/">Paralogues</a>. Game8 walkthrough snippets for Theodora Ch10–12. Where sources disagree, RPG Site's number is shown and the conflict is flagged.</p>`;
+}
+
+/* ---------- render ---------- */
+function render(){
+  renderHeader(); const r=state.route; const m=document.getElementById("main");
+  m.innerHTML = state.sec==="para"?renderPara(r): state.sec==="rec"?renderRec(r): state.sec==="miss"?renderMiss(r): state.sec==="cal"?renderCal(r): renderData();
+}
+document.getElementById("main").addEventListener("click",e=>{
+  const d=e.target.closest("[data-done]"); if(d){ done[d.dataset.done]=!done[d.dataset.done]; save("fw_done",done); render(); return; }
+  const g=e.target.closest("[data-got]"); if(g){ got[g.dataset.got]=!got[g.dataset.got]; save("fw_got",got); render(); return; }
+  const t=e.target.closest("[data-tol]"); if(t){ state.tol=Number(t.dataset.tol); save("fw_state",state); render(); return; }
+  if(e.target.id==="saveJson"){ try{ const v=JSON.parse(document.getElementById("json").value); if(!v.recruits||!v.paralogues) throw new Error("missing recruits/paralogues"); data=v; save("fw_data",v); document.getElementById("msg").textContent="Saved. Switch tabs to see it."; }catch(err){ document.getElementById("msg").textContent="Not saved — invalid JSON: "+err.message; } }
+  if(e.target.id==="resetJson"){ data=DATA; try{localStorage.removeItem("fw_data");}catch(x){} render(); document.getElementById("msg").textContent="Reset to built-in data."; }
+  if(e.target.id==="clearProg"){ done={}; got={}; save("fw_done",done); save("fw_got",got); document.getElementById("msg").textContent="Checkmarks cleared."; }
+});
+applyTheme(); render();
+</script>
+</body>
+</html>

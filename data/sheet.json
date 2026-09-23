@@ -1,0 +1,1768 @@
+{
+  "version": "2026-09-22",
+  "routes": {
+    "cai": {
+      "name": "Cai",
+      "sigil": "Fox",
+      "color": "var(--cai)"
+    },
+    "die": {
+      "name": "Dietrich",
+      "sigil": "Lion",
+      "color": "var(--die)"
+    },
+    "the": {
+      "name": "Theodora",
+      "sigil": "Wolf",
+      "color": "var(--the)"
+    },
+    "leda": {
+      "name": "Leda",
+      "sigil": "Eagle",
+      "color": "var(--leda)"
+    }
+  },
+  "freeTime": {
+    "the": [
+      [
+        4,
+        "3/1",
+        "3/7"
+      ],
+      [
+        5,
+        "3/8",
+        "3/21"
+      ],
+      [
+        6,
+        "3/22",
+        "4/20"
+      ],
+      [
+        7,
+        "4/21",
+        "5/28"
+      ],
+      [
+        8,
+        "6/1",
+        "6/30"
+      ],
+      [
+        9,
+        "7/1",
+        "7/31"
+      ],
+      [
+        10,
+        "8/25",
+        "9/16"
+      ],
+      [
+        11,
+        "9/17",
+        "10/15"
+      ],
+      [
+        12,
+        "10/16",
+        "10/24",
+        "only 32 turns"
+      ]
+    ],
+    "cai": [
+      [
+        3,
+        "2/20",
+        "2/28"
+      ],
+      [
+        4,
+        "3/1",
+        "3/7"
+      ],
+      [
+        5,
+        "3/15",
+        "4/10"
+      ],
+      [
+        6,
+        "4/20",
+        "5/20"
+      ],
+      [
+        7,
+        "6/9",
+        "7/9"
+      ],
+      [
+        8,
+        "7/20",
+        "9/1"
+      ],
+      [
+        9,
+        "9/3",
+        "9/11",
+        "Ultand away"
+      ],
+      [
+        10,
+        "9/15",
+        "10/15"
+      ],
+      [
+        11,
+        "10/16",
+        "10/23"
+      ],
+      [
+        12,
+        "11/4",
+        "11/27",
+        "no paralogues"
+      ]
+    ],
+    "die": [
+      [
+        4,
+        "3/27",
+        "4/10"
+      ],
+      [
+        5,
+        "4/11",
+        "4/30"
+      ],
+      [
+        6,
+        "5/4",
+        "5/28"
+      ],
+      [
+        7,
+        "5/30",
+        "6/15"
+      ],
+      [
+        8,
+        "6/15",
+        "7/21",
+        "then Cetus hunt 7/21–7/31"
+      ],
+      [
+        9,
+        "8/10",
+        "9/19"
+      ],
+      [
+        10,
+        "9/29",
+        "10/4",
+        "very short"
+      ],
+      [
+        11,
+        "10/5",
+        "11/3"
+      ],
+      [
+        12,
+        "11/4",
+        "11/27",
+        "no paralogues"
+      ]
+    ],
+    "leda": [
+      [
+        4,
+        "3/21",
+        "4/4"
+      ],
+      [
+        5,
+        "4/7",
+        "5/7"
+      ],
+      [
+        6,
+        "5/9",
+        "5/28"
+      ],
+      [
+        7,
+        "5/29",
+        "6/28"
+      ],
+      [
+        8,
+        "6/30",
+        "7/9"
+      ],
+      [
+        9,
+        "7/12",
+        "9/1",
+        "skips most of Sept"
+      ],
+      [
+        10,
+        "9/28",
+        "10/15"
+      ],
+      [
+        11,
+        "10/16",
+        "11/6"
+      ],
+      [
+        12,
+        "11/7",
+        "11/27",
+        "no paralogues"
+      ]
+    ]
+  },
+  "paralogues": [
+    {
+      "id": "leda",
+      "name": "Diversionary Tactics",
+      "char": "Leda",
+      "from": "Leda, Temple Row",
+      "reward": "Silver Shield",
+      "note": "Battle is fixed to 9/8. You must talk to Leda by 9/7 at the latest — you cannot skip forward to 9/8 yourself. Simplest paralogue; watch poison.",
+      "routes": {
+        "die": {
+          "windows": [
+            [
+              "9/2",
+              "9/8"
+            ]
+          ],
+          "deadline": "9/8"
+        },
+        "the": {
+          "windows": [
+            [
+              "9/2",
+              "9/8"
+            ]
+          ],
+          "deadline": "9/8"
+        }
+      }
+    },
+    {
+      "id": "theo",
+      "name": "Missing Brave-Warrior Statue",
+      "char": "Theodora",
+      "from": "Bonaventure, Temple Row",
+      "reward": "Pilum",
+      "note": "Fog of war. Stand on 3 mechanisms (SE, SW, NW). Dietrich-only.",
+      "routes": {
+        "die": {
+          "windows": [
+            [
+              "9/3",
+              "9/12"
+            ]
+          ],
+          "deadline": "9/15"
+        }
+      }
+    },
+    {
+      "id": "bert",
+      "name": "Friendly Match with Brigid's King",
+      "char": "Bertrand",
+      "from": "Gabriel, Arena Square",
+      "reward": "Extra Large Bullion",
+      "note": "Kill 4 Giants before Peppe's group. Battle starts 9pm the day you accept. Needed for Peppe (Cai/Die/The) and Gaitz (Die).",
+      "routes": {
+        "cai": {
+          "windows": [
+            [
+              "9/17",
+              "9/25"
+            ]
+          ],
+          "deadline": "9/25"
+        },
+        "die": {
+          "windows": [
+            [
+              "9/17",
+              "9/17"
+            ]
+          ],
+          "deadline": "9/17",
+          "flag": "ONE DAY ONLY"
+        },
+        "the": {
+          "windows": [
+            [
+              "9/17",
+              "9/25"
+            ]
+          ],
+          "deadline": "9/25"
+        }
+      }
+    },
+    {
+      "id": "tali",
+      "name": "Secret of the Vanished Carriage",
+      "char": "Talimun",
+      "from": "Talimun, near the Port",
+      "reward": "Cleansing Blade",
+      "note": "Thieves grab cargo and run for the top exit — keep a fast unit back. Needed for Ursula.",
+      "routes": {
+        "cai": {
+          "windows": [
+            [
+              "9/17",
+              "9/22"
+            ],
+            [
+              "10/1",
+              "10/10"
+            ]
+          ],
+          "deadline": "10/12"
+        },
+        "die": {
+          "windows": [
+            [
+              "9/17",
+              "9/22"
+            ],
+            [
+              "10/1",
+              "10/10"
+            ]
+          ],
+          "deadline": "10/12",
+          "flag": "Ch9 free time ends 9/19, so the first window is really 9/17–9/19; Ch10 is 9/29–10/4."
+        },
+        "the": {
+          "windows": [
+            [
+              "9/17",
+              "9/22"
+            ],
+            [
+              "10/1",
+              "10/10"
+            ]
+          ],
+          "deadline": "10/12"
+        }
+      }
+    },
+    {
+      "id": "anna",
+      "name": "Golden Secret",
+      "char": "Anna",
+      "from": "Anna, Dagsion Summit",
+      "reward": "Orichalcum",
+      "note": "Small deployment; bring Physic + anti-armor. Don't let Solel fight the Giant; break the last ore deposit to stun it.",
+      "routes": {
+        "cai": {
+          "windows": [
+            [
+              "9/24",
+              "10/5"
+            ]
+          ],
+          "deadline": "10/5"
+        },
+        "die": {
+          "windows": [
+            [
+              "9/29",
+              "10/5"
+            ]
+          ],
+          "deadline": "10/5",
+          "flag": "Do it ASAP — Ch10 free time is only 9/29–10/4."
+        },
+        "the": {
+          "windows": [
+            [
+              "9/24",
+              "10/5"
+            ]
+          ],
+          "deadline": "10/5"
+        }
+      }
+    },
+    {
+      "id": "anat",
+      "name": "Queen of the Erased",
+      "char": "Anatolia",
+      "from": "Anatolia, City Streets",
+      "reward": "Electron Agitator (+Spellshard & Dew of Peace if all villagers live)",
+      "note": "Hardest paralogue (Pentkehydra). You don't need to kill the boss. Escort villagers E then N counter-clockwise. Needed for Sha Lan.",
+      "routes": {
+        "die": {
+          "windows": [
+            [
+              "10/5",
+              "10/14"
+            ]
+          ],
+          "deadline": "10/17"
+        },
+        "leda": {
+          "windows": [
+            [
+              "10/5",
+              "10/14"
+            ]
+          ],
+          "deadline": "10/17"
+        }
+      }
+    },
+    {
+      "id": "cai",
+      "name": "Great Escape",
+      "char": "Cai",
+      "from": "Cai, City Streets",
+      "reward": "Gem Box",
+      "note": "Battle is fixed to 10/22 in Dagsion — talk to Cai by 10/21 at the latest. Beeline Centurio. Needed for Tialla.",
+      "routes": {
+        "die": {
+          "windows": [
+            [
+              "10/16",
+              "10/22"
+            ]
+          ],
+          "deadline": "10/22"
+        },
+        "the": {
+          "windows": [
+            [
+              "10/16",
+              "10/22"
+            ]
+          ],
+          "deadline": "10/22",
+          "flag": "Do this LAST in Ch12 (fixed 10/22 date eats your turns)."
+        },
+        "leda": {
+          "windows": [
+            [
+              "10/16",
+              "10/22"
+            ]
+          ],
+          "deadline": "10/22"
+        }
+      }
+    },
+    {
+      "id": "diet",
+      "name": "Sealed-Off Past",
+      "char": "Dietrich",
+      "from": "Fabio, near the Arena",
+      "reward": "Salamander ×2",
+      "note": "10-turn defense. Archers on the E side for Pegasus Knights. Needed for Fabio (Leda).",
+      "routes": {
+        "the": {
+          "windows": [
+            [
+              "10/16",
+              "10/24"
+            ]
+          ],
+          "deadline": "10/24",
+          "flag": "Quest page says 11/1 but Theodora's Part I ends 10/24."
+        },
+        "leda": {
+          "windows": [
+            [
+              "10/16",
+              "10/22"
+            ]
+          ],
+          "deadline": "11/1",
+          "flag": "Sources disagree on pickup end: 10/22 (paralogue guide) vs 10/29 (Leda walkthrough). Grab it by 10/22 to be safe."
+        }
+      }
+    },
+    {
+      "id": "orch",
+      "name": "Orchel's Regret",
+      "char": "Orchel",
+      "from": "Orchel, Lower Temple Row",
+      "reward": "Healing Staff",
+      "note": "Biggest map. Split up, hit both switches together to fire the Onager. Pegasus reinforcements E. Chests are just Pure Water. Needed for Diego on every route.",
+      "routes": {
+        "cai": {
+          "windows": [
+            [
+              "10/18",
+              "10/20"
+            ]
+          ],
+          "deadline": "10/21",
+          "flag": "Only 3 pickup days on Cai's route."
+        },
+        "die": {
+          "windows": [
+            [
+              "10/18",
+              "10/25"
+            ]
+          ],
+          "deadline": "10/27"
+        },
+        "the": {
+          "windows": [
+            [
+              "10/18",
+              "10/24"
+            ]
+          ],
+          "deadline": "10/24",
+          "flag": "Quest page says 10/27 but Theodora's Part I ends 10/24."
+        },
+        "leda": {
+          "windows": [
+            [
+              "10/18",
+              "10/25"
+            ]
+          ],
+          "deadline": "10/27"
+        }
+      }
+    }
+  ],
+  "recruits": [
+    {
+      "n": "Cai",
+      "cai": "auto",
+      "die": null,
+      "the": null,
+      "leda": null
+    },
+    {
+      "n": "Tialla",
+      "cai": "auto",
+      "die": [
+        3,
+        9,
+        "Cai's Paralogue, 3000G"
+      ],
+      "the": [
+        3,
+        10,
+        "Cai's Paralogue, 3000G"
+      ],
+      "leda": [
+        3,
+        8,
+        "Cai's Paralogue, 3000G"
+      ],
+      "gate": "cai"
+    },
+    {
+      "n": "Peter",
+      "cai": "auto",
+      "die": [
+        3,
+        8,
+        "Quest"
+      ],
+      "the": [
+        3,
+        7,
+        "Quest"
+      ],
+      "leda": [
+        3,
+        10,
+        "Quest"
+      ]
+    },
+    {
+      "n": "Ultand",
+      "cai": "auto (Ch6)",
+      "die": [
+        3,
+        5,
+        "Quest"
+      ],
+      "the": [
+        3,
+        6,
+        "Quest"
+      ],
+      "leda": [
+        3,
+        8,
+        "Quest"
+      ]
+    },
+    {
+      "n": "Gaitz",
+      "cai": null,
+      "die": [
+        3,
+        10,
+        "Bertrand's Paralogue + Bertrand's team eliminated (~Ch12)"
+      ],
+      "the": null,
+      "leda": null,
+      "gate": "bert"
+    },
+    {
+      "n": "Jester",
+      "cai": [
+        3,
+        10,
+        "3× Quest"
+      ],
+      "die": [
+        3,
+        6,
+        "3× Quest"
+      ],
+      "the": [
+        3,
+        9,
+        "3× Quest"
+      ],
+      "leda": [
+        3,
+        10,
+        "3× Quest"
+      ]
+    },
+    {
+      "n": "Goliath",
+      "cai": [
+        3,
+        7,
+        "3× Giant's Meat"
+      ],
+      "die": [
+        3,
+        6,
+        "3× Giant's Meat"
+      ],
+      "the": [
+        3,
+        9,
+        "3× Giant's Meat"
+      ],
+      "leda": [
+        3,
+        10,
+        "3× Giant's Meat"
+      ],
+      "tip": "Giant's Meat: one always in Sand-Shadow Fort, or Giant-icon skirmishes."
+    },
+    {
+      "n": "Dante",
+      "cai": [
+        3,
+        10,
+        "8000G"
+      ],
+      "die": [
+        2,
+        8,
+        "8000G"
+      ],
+      "the": [
+        3,
+        6,
+        "8000G"
+      ],
+      "leda": [
+        3,
+        10,
+        "8000G"
+      ]
+    },
+    {
+      "n": "Dietrich",
+      "cai": null,
+      "die": "auto",
+      "the": null,
+      "leda": null
+    },
+    {
+      "n": "Fabio",
+      "cai": null,
+      "die": "auto",
+      "the": null,
+      "leda": [
+        3,
+        9,
+        "Dietrich's Paralogue + Dietrich's team eliminated (~Ch12) + suitable item (a Da Mina weapon works)"
+      ],
+      "gate": "diet"
+    },
+    {
+      "n": "Esmeralda",
+      "cai": [
+        3,
+        7,
+        "Quest"
+      ],
+      "die": "auto",
+      "the": [
+        3,
+        9,
+        "Quest"
+      ],
+      "leda": [
+        3,
+        6,
+        "Quest"
+      ]
+    },
+    {
+      "n": "Mikaela",
+      "cai": [
+        3,
+        5,
+        "3000G"
+      ],
+      "die": "auto",
+      "the": [
+        3,
+        8,
+        "3000G"
+      ],
+      "leda": [
+        3,
+        6,
+        "3000G"
+      ]
+    },
+    {
+      "n": "Diego",
+      "cai": [
+        3,
+        10,
+        "Orchel's Paralogue"
+      ],
+      "die": [
+        3,
+        9,
+        "Orchel's Paralogue"
+      ],
+      "the": [
+        2,
+        8,
+        "Orchel's Paralogue"
+      ],
+      "leda": [
+        3,
+        8,
+        "Orchel's Paralogue"
+      ],
+      "gate": "orch"
+    },
+    {
+      "n": "Loretta",
+      "cai": [
+        3,
+        7,
+        "3× Iron Sword"
+      ],
+      "die": [
+        3,
+        9,
+        "3× Iron Sword"
+      ],
+      "the": [
+        3,
+        5,
+        "3× Iron Sword"
+      ],
+      "leda": [
+        3,
+        5,
+        "3× Iron Sword"
+      ]
+    },
+    {
+      "n": "Seteth",
+      "cai": [
+        3,
+        6,
+        "Quest"
+      ],
+      "die": null,
+      "the": [
+        3,
+        6,
+        "Quest"
+      ],
+      "leda": [
+        3,
+        10,
+        "Quest"
+      ]
+    },
+    {
+      "n": "Ninae",
+      "cai": [
+        3,
+        6,
+        "1× Paradise Fish"
+      ],
+      "die": [
+        3,
+        8,
+        "1× Paradise Fish"
+      ],
+      "the": [
+        3,
+        6,
+        "1× Paradise Fish"
+      ],
+      "leda": [
+        3,
+        6,
+        "1× Paradise Fish"
+      ],
+      "tip": "Paradise Fish: Lake Brontes (Saveilon), past Valhalla Mine.",
+      "conflict": "Leda: RPG Site says 6R, KeenGamer says 8R."
+    },
+    {
+      "n": "Theodora",
+      "cai": null,
+      "die": null,
+      "the": "auto",
+      "leda": null
+    },
+    {
+      "n": "Bonaventure",
+      "cai": null,
+      "die": null,
+      "the": "auto",
+      "leda": null
+    },
+    {
+      "n": "Tobias",
+      "cai": null,
+      "die": null,
+      "the": "auto",
+      "leda": null
+    },
+    {
+      "n": "Lilian",
+      "cai": [
+        2,
+        8,
+        "5000G"
+      ],
+      "die": [
+        2,
+        8,
+        "5000G"
+      ],
+      "the": "auto",
+      "leda": [
+        2,
+        7,
+        "5000G"
+      ]
+    },
+    {
+      "n": "Lysander",
+      "cai": [
+        3,
+        8,
+        "5× Iron Spear"
+      ],
+      "die": [
+        3,
+        6,
+        "5× Iron Spear"
+      ],
+      "the": "auto",
+      "leda": [
+        3,
+        7,
+        "5× Iron Spear"
+      ]
+    },
+    {
+      "n": "Ursula",
+      "cai": [
+        3,
+        10,
+        "Talimun's Paralogue, answer Yes ×3"
+      ],
+      "die": [
+        3,
+        7,
+        "Talimun's Paralogue, answer Yes ×3"
+      ],
+      "the": [
+        3,
+        9,
+        "Talimun's Paralogue, answer Yes ×3"
+      ],
+      "leda": null,
+      "gate": "tali"
+    },
+    {
+      "n": "Ludia",
+      "cai": [
+        3,
+        9,
+        "Quest"
+      ],
+      "die": [
+        3,
+        9,
+        "Quest"
+      ],
+      "the": [
+        3,
+        7,
+        "Quest"
+      ],
+      "leda": [
+        3,
+        7,
+        "Quest"
+      ]
+    },
+    {
+      "n": "Simon",
+      "cai": [
+        3,
+        8,
+        "Coin flip → Tails"
+      ],
+      "die": [
+        3,
+        7,
+        "Coin flip → Tails"
+      ],
+      "the": [
+        3,
+        7,
+        "Coin flip → Tails"
+      ],
+      "leda": [
+        3,
+        6,
+        "Coin flip → Tails"
+      ]
+    },
+    {
+      "n": "Fianna",
+      "cai": [
+        3,
+        8,
+        "3000G"
+      ],
+      "die": [
+        3,
+        7,
+        "3000G"
+      ],
+      "the": [
+        3,
+        9,
+        "3000G"
+      ],
+      "leda": [
+        3,
+        5,
+        "3000G"
+      ]
+    },
+    {
+      "n": "Leda",
+      "cai": null,
+      "die": null,
+      "the": null,
+      "leda": "auto"
+    },
+    {
+      "n": "Buccar",
+      "cai": null,
+      "die": [
+        3,
+        8,
+        "Leda's Paralogue"
+      ],
+      "the": [
+        3,
+        8,
+        "Leda's Paralogue"
+      ],
+      "leda": "auto",
+      "gate": "leda"
+    },
+    {
+      "n": "Sirocco",
+      "cai": [
+        3,
+        9,
+        "Quest"
+      ],
+      "die": [
+        3,
+        9,
+        "Quest"
+      ],
+      "the": [
+        1,
+        5,
+        "Quest"
+      ],
+      "leda": "auto"
+    },
+    {
+      "n": "Olympia",
+      "cai": [
+        3,
+        8,
+        "3× Quest"
+      ],
+      "die": [
+        3,
+        6,
+        "3× Quest"
+      ],
+      "the": [
+        3,
+        9,
+        "3× Quest"
+      ],
+      "leda": "auto"
+    },
+    {
+      "n": "Mu",
+      "cai": [
+        3,
+        9,
+        "3× Glirmosa"
+      ],
+      "die": [
+        3,
+        7,
+        "3× Glirmosa"
+      ],
+      "the": [
+        3,
+        9,
+        "3× Glirmosa"
+      ],
+      "leda": "auto",
+      "tip": "Glirmosa: Mount Orgus Trail, Rear Mountain Path, Forest of No Return, Giant's Mount (Pasithea)."
+    },
+    {
+      "n": "Nezha",
+      "cai": [
+        3,
+        6,
+        "3× Sandworm Meat"
+      ],
+      "die": [
+        3,
+        10,
+        "3× Sandworm Meat"
+      ],
+      "the": [
+        2,
+        6,
+        "3× Sandworm Meat"
+      ],
+      "leda": [
+        3,
+        9,
+        "3× Sandworm Meat"
+      ],
+      "team": "Anatolia"
+    },
+    {
+      "n": "Sha Lan",
+      "cai": null,
+      "die": [
+        3,
+        10,
+        "Anatolia's Paralogue; answer Saramis, Da Mina, Grounded Ship"
+      ],
+      "the": null,
+      "leda": [
+        3,
+        8,
+        "Anatolia's Paralogue; answer Saramis, Da Mina, Grounded Ship"
+      ],
+      "gate": "anat",
+      "team": "Anatolia"
+    },
+    {
+      "n": "Dadao",
+      "cai": [
+        3,
+        7,
+        "2× Kothar Gar"
+      ],
+      "die": [
+        3,
+        10,
+        "2× Kothar Gar"
+      ],
+      "the": [
+        2,
+        5,
+        "2× Kothar Gar"
+      ],
+      "leda": [
+        2,
+        5,
+        "2× Kothar Gar"
+      ],
+      "team": "Anatolia"
+    },
+    {
+      "n": "Halvin",
+      "cai": [
+        3,
+        9,
+        "10× Dates"
+      ],
+      "die": [
+        3,
+        9,
+        "10× Dates"
+      ],
+      "the": [
+        3,
+        7,
+        "10× Dates"
+      ],
+      "leda": [
+        3,
+        7,
+        "10× Dates"
+      ],
+      "team": "Anatolia",
+      "conflict": "Cai: RPG Site says 9R, KeenGamer says 5R."
+    },
+    {
+      "n": "Guzran",
+      "cai": "auto (tutorial)",
+      "die": [
+        3,
+        8,
+        ""
+      ],
+      "the": [
+        3,
+        8,
+        ""
+      ],
+      "leda": [
+        1,
+        3,
+        ""
+      ]
+    },
+    {
+      "n": "Yang Jie",
+      "cai": [
+        2,
+        3,
+        "answer Cheese, Moon, Potatoes"
+      ],
+      "die": "auto (tutorial)",
+      "the": [
+        3,
+        9,
+        "answer Cheese, Moon, Potatoes"
+      ],
+      "leda": [
+        3,
+        8,
+        "answer Cheese, Moon, Potatoes"
+      ]
+    },
+    {
+      "n": "Io",
+      "cai": [
+        3,
+        10,
+        "4000G"
+      ],
+      "die": [
+        2,
+        3,
+        "800G"
+      ],
+      "the": [
+        3,
+        10,
+        "4000G"
+      ],
+      "leda": [
+        1,
+        6,
+        "1500G"
+      ]
+    },
+    {
+      "n": "Peppe",
+      "cai": [
+        1,
+        9,
+        "Bertrand's Paralogue"
+      ],
+      "die": [
+        3,
+        8,
+        "Bertrand's Paralogue"
+      ],
+      "the": [
+        2,
+        7,
+        "Bertrand's Paralogue"
+      ],
+      "leda": null,
+      "gate": "bert"
+    },
+    {
+      "n": "Noctula",
+      "cai": [
+        1,
+        4,
+        ""
+      ],
+      "die": [
+        1,
+        6,
+        ""
+      ],
+      "the": [
+        1,
+        3,
+        ""
+      ],
+      "leda": [
+        3,
+        8,
+        ""
+      ]
+    },
+    {
+      "n": "Sofia",
+      "cai": [
+        3,
+        9,
+        ""
+      ],
+      "die": [
+        3,
+        9,
+        ""
+      ],
+      "the": "auto (tutorial)",
+      "leda": [
+        3,
+        7,
+        ""
+      ]
+    },
+    {
+      "n": "Catania",
+      "cai": [
+        3,
+        10,
+        ""
+      ],
+      "die": [
+        1,
+        8,
+        ""
+      ],
+      "the": [
+        3,
+        7,
+        ""
+      ],
+      "leda": "auto (tutorial)"
+    },
+    {
+      "n": "Nydine",
+      "cai": [
+        1,
+        6,
+        "2× Bronze Axe"
+      ],
+      "die": [
+        2,
+        5,
+        "2× Bronze Axe"
+      ],
+      "the": [
+        3,
+        5,
+        "3× Iron Axe"
+      ],
+      "leda": [
+        3,
+        10,
+        "3× Iron Axe"
+      ]
+    },
+    {
+      "n": "Zarcone",
+      "cai": [
+        3,
+        8,
+        "Negotiate (can go to 10G)"
+      ],
+      "die": [
+        3,
+        7,
+        "Negotiate"
+      ],
+      "the": [
+        1,
+        4,
+        "Negotiate"
+      ],
+      "leda": [
+        2,
+        5,
+        "Negotiate"
+      ]
+    },
+    {
+      "n": "Majide",
+      "cai": [
+        2,
+        5,
+        "Answer his question 3×"
+      ],
+      "die": [
+        3,
+        8,
+        "Answer 3×"
+      ],
+      "the": [
+        3,
+        8,
+        "Answer 3×"
+      ],
+      "leda": [
+        3,
+        9,
+        "Answer 3×"
+      ]
+    },
+    {
+      "n": "Benditz",
+      "cai": [
+        3,
+        9,
+        ""
+      ],
+      "die": [
+        2,
+        7,
+        ""
+      ],
+      "the": [
+        1,
+        8,
+        ""
+      ],
+      "leda": [
+        3,
+        7,
+        ""
+      ],
+      "appears": "~4/11"
+    },
+    {
+      "n": "Inyoni",
+      "cai": [
+        3,
+        8,
+        "6000G"
+      ],
+      "die": [
+        3,
+        8,
+        "6000G"
+      ],
+      "the": [
+        1,
+        9,
+        "4000G"
+      ],
+      "leda": [
+        1,
+        7,
+        "3000G"
+      ],
+      "appears": "~7/10"
+    },
+    {
+      "n": "Jasmine",
+      "cai": [
+        1,
+        8,
+        "2000G"
+      ],
+      "die": [
+        3,
+        9,
+        "5000G"
+      ],
+      "the": [
+        3,
+        8,
+        "5000G"
+      ],
+      "leda": [
+        2,
+        4,
+        "500G"
+      ],
+      "appears": "~5/8"
+    },
+    {
+      "n": "Alexandra",
+      "cai": [
+        2,
+        7,
+        ""
+      ],
+      "die": [
+        3,
+        8,
+        ""
+      ],
+      "the": [
+        1,
+        6,
+        ""
+      ],
+      "leda": [
+        3,
+        10,
+        ""
+      ],
+      "appears": "~5/29"
+    },
+    {
+      "n": "Nuzzuo",
+      "cai": [
+        2,
+        6,
+        "3× Iron Bow"
+      ],
+      "die": [
+        1,
+        9,
+        "2× Iron Bow"
+      ],
+      "the": [
+        1,
+        6,
+        "3× Iron Bow"
+      ],
+      "leda": [
+        3,
+        9,
+        "3× Iron Bow"
+      ],
+      "appears": "~7/1"
+    },
+    {
+      "n": "Kiroc",
+      "cai": [
+        3,
+        8,
+        "8× Pure Water"
+      ],
+      "die": [
+        1,
+        4,
+        "3× Pure Water"
+      ],
+      "the": [
+        3,
+        10,
+        "8× Pure Water"
+      ],
+      "leda": [
+        1,
+        4,
+        "3× Pure Water"
+      ],
+      "appears": "~5/4"
+    }
+  ],
+  "dontMiss": {
+    "the": [
+      {
+        "ch": 5,
+        "t": "Send Supplies quests (Theodora-only) all expire 10/24, the very last day of her route.",
+        "s": "Ch8 Ladon Loach ×35 → Cataphract class. Ch9 Kothar Gar ×10 → Guardian. Ch11 Sea-Star Stone ×35 → Dragoon."
+      },
+      {
+        "ch": 6,
+        "t": "Special Match: Exhibition vs Bertrand on 4/6 at 18:00, path between Temple Row and Hightown.",
+        "s": "Theodora-exclusive. You only need to damage him, not kill him.",
+        "hot": true
+      },
+      {
+        "ch": 7,
+        "t": "Optional scene: talk to Alexandra in City Streets, then the pulsing event in Lowtown.",
+        "s": "Scenes are tracked at the Obelisk Chamber pedestal."
+      },
+      {
+        "ch": 7,
+        "t": "Enno Isle (lv 24) dungeon is Theodora-exclusive — ship required.",
+        "s": "Good chapter to sail the Danann Sea; Carna Bonito for Send Supplies is at Peluza Cape."
+      },
+      {
+        "ch": 8,
+        "t": "Theater unlocks at Renown 7, Thermae at Renown 8 (all routes).",
+        "s": "Both raise support — Stage Shows count toward recruitment."
+      },
+      {
+        "ch": 10,
+        "t": "Lend Anatolia your ship (she asks, returns it by 9/21).",
+        "s": "Her team then fights alongside you in the Ch12 finale, plus an extra Anatolia scene in Ch11.",
+        "hot": true
+      },
+      {
+        "ch": 10,
+        "t": "Optional scene with Orchel in Yu Phas' Temple (via Entertainment District).",
+        "s": "Northern Passage also has a new chest this chapter: Phantom Ring."
+      },
+      {
+        "ch": 10,
+        "t": "Before the Talimun main match, 'hear Lilian out' for support.",
+        "s": ""
+      },
+      {
+        "ch": 11,
+        "t": "Anatolia's team is NOT in Dagsion during Ch12. Recruit Nezha / Dadao / Halvin in Ch11 or lose them.",
+        "s": "Wait until they return with your boat if you lent it. Sha Lan isn't recruitable on Theodora.",
+        "hot": true
+      },
+      {
+        "ch": 11,
+        "t": "Ch12 free time is only 32 turns (10/16–10/24) with three paralogues in it. Front-load everything into Ch11.",
+        "s": "Great Escape is fixed to 10/22 — do it last. Sealed-Off Past and Orchel's Regret both die at 10/24 no matter what the quest page says.",
+        "hot": true
+      },
+      {
+        "ch": 12,
+        "t": "Last chance to recruit anyone on this route.",
+        "s": "Theodora-only recruits: Bonaventure, Tobias (auto). Lilian & Lysander are auto here but cost 7–8R elsewhere."
+      }
+    ],
+    "cai": [
+      {
+        "ch": 2,
+        "t": "Choose 'Pursue' after the Event Clash for the Galen Fort Ruins tutorial dungeon (Hunter's Bow inside).",
+        "s": "Optional scene with Castor/Centurio to the east in Dagsion before doing anything else."
+      },
+      {
+        "ch": 4,
+        "t": "Optional scene: Bertrand in the jail (Cai gains Sword EXP).",
+        "s": ""
+      },
+      {
+        "ch": 5,
+        "t": "Mentorships (Cai-only): Castor 'Terrain Tips' → Bolt Gem; Aurora at 4R 'Staying Healthy' → Healing Staff.",
+        "s": "Stables/Lure/Farming are Cai-exclusive. Animal bonds give class-relevant stat skills (e.g. Wild Horse lv5 bond → Paired Run+)."
+      },
+      {
+        "ch": 6,
+        "t": "Optional scene at the mural in Ahm Lu before the main marker.",
+        "s": "Mentorships: Bertrand 5R 'Know Your Enemy' → Halberd; Centurio 6R 'Against Large Foes' → Levin Sword."
+      },
+      {
+        "ch": 7,
+        "t": "Kindness quest 'The Artisans of Megaira' → unlocks carriages (much faster travel). Do it ASAP.",
+        "s": "'Trouble at the Gate' opens Hugo Stronghold to reach Castalia. Castor 7R mentorship (2× Angelica) → Caladrius class.",
+        "hot": true
+      },
+      {
+        "ch": 8,
+        "t": "Aurora 8R mentorship 'Special Request from Mom' → Dragoon class.",
+        "s": "'Beasts Blocking the Path Home' opens Idyia. Start catching a Wild Pegasus for a Ch11 quest."
+      },
+      {
+        "ch": 9,
+        "t": "Ultand is unavailable this chapter (back in Ch10). Very short free time 9/3–9/11.",
+        "s": "Bertrand 10R mentorship → Advanced License."
+      },
+      {
+        "ch": 11,
+        "t": "Orchel's Regret pickup is only 10/18–10/20 on Cai's route, deadline 10/21.",
+        "s": "Cai's Ch11 is 10/16–10/23; nothing else paralogue-wise lands here.",
+        "hot": true
+      },
+      {
+        "ch": 12,
+        "t": "Ch12 (11/4–11/27) has no paralogues — pure cleanup and recruiting.",
+        "s": "Most Kindness quests run to 11/27. Highest-level Part I dungeon is on the southern continent (Ogmios)."
+      }
+    ],
+    "die": [
+      {
+        "ch": 4,
+        "t": "Optional scene with Talimun (south pulse on the map) after the Tavern — unlocks a second Event Clash that night.",
+        "s": "Also: Esmeralda at the Inn; Mikaela & Esmeralda by the Arena → Mikaela/Mu scene in the shops."
+      },
+      {
+        "ch": 4,
+        "t": "Blacksmith class needs 10 Combat Arts upgraded at Smyrnos's Temple (~400 Magic Echo Shards).",
+        "s": "Use Answerer's Cry regularly on the world map to farm shards. Dietrich-only.",
+        "hot": true
+      },
+      {
+        "ch": 5,
+        "t": "Optional scene: talk to Fabio, then the scene in the eastern alleys.",
+        "s": "This is a prerequisite for a Ch10 Fabio scene (18:00 near Temple Rows).",
+        "hot": true
+      },
+      {
+        "ch": 5,
+        "t": "Dread Warrior Challenges (Dietrich-only duels) gate on Renown and all end 11/27.",
+        "s": "Il-Lara (Ch8) → Guardian class. Oko (Ch10) → Ranger class."
+      },
+      {
+        "ch": 6,
+        "t": "Optional scene: Alexandra in City Streets → Lowtown event.",
+        "s": ""
+      },
+      {
+        "ch": 8,
+        "t": "Optional scene at 18:00 in the Lowtown alley (comes with an Event Clash).",
+        "s": "Cetus hunt 7/21–7/31: clear Uncharted Isle (east) first, then fail-search Pasha Currents, Wandering Whirlpool, Eif Channel before Sea of Screams. Nod to Fabio afterward for support."
+      },
+      {
+        "ch": 9,
+        "t": "Bertrand's Paralogue is available on 9/17 ONLY. Shortest window in the game.",
+        "s": "If you do it 9/17 you can still just reach Talimun's before free time ends 9/19; otherwise Talimun's persists into Ch10/11.",
+        "hot": true
+      },
+      {
+        "ch": 10,
+        "t": "Free time is only 9/29–10/4. Do Anna's Paralogue immediately.",
+        "s": "Inquire Fabio in the opening scenes for support. Fabio 18:00 scene near Temple Rows if you saw the Ch5 one.",
+        "hot": true
+      },
+      {
+        "ch": 11,
+        "t": "Three paralogues here (Anatolia's, Cai's, Orchel's) — the long 10/5–11/3 free time makes this Dietrich's big paralogue chapter.",
+        "s": ""
+      },
+      {
+        "ch": 12,
+        "t": "Gaitz becomes recruitable once Bertrand's team is out of the tournament (~Ch12). Needs 3S/10R + Bertrand's Paralogue.",
+        "s": "Optional scene with Fabio in the alley east of the markets. No paralogues in Ch12.",
+        "hot": true
+      }
+    ],
+    "leda": [
+      {
+        "ch": 4,
+        "t": "Optional scenes: Mikaela in the shopping area; Talimun in the shopping area (not on the very first turn of free time).",
+        "s": "Perform Quests (Leda-only) pay huge Renown — do every one."
+      },
+      {
+        "ch": 4,
+        "t": "Drink-recipe chain: Simple (3R) → Captains' (6R) → Popular (8R) → Elegant (10R, ends 11/17!) → Song of Angels + Ranger & Troubadour classes.",
+        "s": "Leaves come from Perform quests: Sweet (Ch4–6), Pepper (Ch7+), Bitter (Ch10), Wonder (Ch11).",
+        "hot": true
+      },
+      {
+        "ch": 5,
+        "t": "Leda-only subquest 'Monster in the Night' — eastern alleys after 18:00, ends 5/7.",
+        "s": "Optional scene with Kalla at her shrine."
+      },
+      {
+        "ch": 6,
+        "t": "Optional scenes: Olympia in Temple Row; Alexandra in City Streets → Lowtown.",
+        "s": ""
+      },
+      {
+        "ch": 7,
+        "t": "Leda-only subquest 'Learning More about Mehdel' from Sirocco, ends 6/28.",
+        "s": ""
+      },
+      {
+        "ch": 9,
+        "t": "18:00 scene with Sirocco in Temple Row, then follow him toward Hightown for a second scene.",
+        "s": "'Great Dancer's Successor' (Hingosh from Baina Oasis) → Dancer's Necklace, ends 10/15."
+      },
+      {
+        "ch": 9,
+        "t": "Leda's story skips 9/2–9/27 entirely. Finish everything ending 9/1 and 10/15 during this long free time.",
+        "s": "Leda has no paralogues in September, so nothing is lost there.",
+        "hot": true
+      },
+      {
+        "ch": 10,
+        "t": "Lv 30 Trial Battle at Kalla's Main Temple → Kalla's Bow (Leda-only).",
+        "s": "Anna's shop starts appearing north of Temple Row."
+      },
+      {
+        "ch": 11,
+        "t": "Fabio becomes recruitable once Dietrich's team is eliminated (~Ch12). Needs Dietrich's Paralogue (grab it 10/16–10/22) + 3S/9R + a Da Mina weapon.",
+        "s": "Three paralogues in Ch11 (Cai's, Dietrich's, Orchel's).",
+        "hot": true
+      },
+      {
+        "ch": 12,
+        "t": "Ch12 (11/7–11/27) has no paralogues — cleanup and recruiting only.",
+        "s": ""
+      }
+    ],
+    "all": [
+      {
+        "t": "Support levels are GLOBAL and never go down. Hit 3S with someone once and it counts on every route — so the real per-route cost is Renown + the extra item/quest.",
+        "s": "Bless levels are global too. Subquests done on one route auto-complete (and pay out) on others."
+      },
+      {
+        "t": "Leda's (9/8) and Cai's (10/22) paralogues have fixed battle days. Accept them at least the day before; you can't manually skip to the date.",
+        "s": ""
+      },
+      {
+        "t": "Watch shrine icons in Temple Row turning yellow — a free audience with a god gives Renown and costs no turn.",
+        "s": "Feeding the Pale Raven, praying, Arena training and Inn meals are also free actions."
+      },
+      {
+        "t": "Creek (Part II) requires the Part I subquest 'My Late Sister's Accessory'. Subquests are semi-random per route, so keep an eye out on every path.",
+        "s": "Nathan (Part II Ch3) then requires Creek to land the killing blow on him."
+      },
+      {
+        "t": "Bertrand, Talimun, Anatolia and Orchel only become full Part III units if you cleared their paralogue somewhere in Part I.",
+        "s": "A Flame Lord whose paralogue you cleared but whose route you never finished is a 'limited' Part III ally — irrelevant if you do all four routes."
+      },
+      {
+        "t": "Anna's shop appears north of Temple Row from Ch10 with rotating rare stock.",
+        "s": ""
+      }
+    ]
+  }
+}

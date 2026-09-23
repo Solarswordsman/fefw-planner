@@ -1,0 +1,13 @@
+# Netlify build & deploy settings for fefw.jlamb.sh (a static Vite site).
+# Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+	command = "npm run lint && npm test && npm run build"
+	publish = "dist"
+
+[build.environment]
+	# Vite 8 needs Node >= 20.19 / 22.12. Pin for reproducible CI builds.
+	NODE_VERSION = "22"
+
+# Single-page static site, no client-side router, so no SPA fallback redirect
+# is needed.
