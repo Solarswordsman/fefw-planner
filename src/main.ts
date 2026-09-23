@@ -1,5 +1,5 @@
 import "./style.css";
-import { DATA, ROUTES } from "./data";
+import { DATA, ROUTES, SECTIONS } from "./data";
 import { render, renderHeader } from "./render";
 import { DATA_KEY, DONE_KEY, GOT_KEY, load, save, STATE_KEY } from "./storage";
 import type { Checks, RouteId, SectionId, Sheet, State } from "./types";
@@ -61,7 +61,7 @@ function onLordsClick(e: MouseEvent): void {
 function onSecsClick(e: MouseEvent): void {
 	const button = closest(e.target, ".sec");
 	const sec = button?.dataset.s;
-	if (!button || !sec || !["para", "rec", "miss", "cal", "data"].includes(sec)) return;
+	if (!button || !sec || !SECTIONS.some(([k]) => k === sec)) return;
 
 	state.sec = sec as SectionId;
 	save(STATE_KEY, state);

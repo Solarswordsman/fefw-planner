@@ -24,8 +24,7 @@ export function renderHeader(
 ): { lords: string; secs: string; accent: string } {
 	const lords = ROUTES.map((r) => {
 		const n = data.paralogues.filter((p) => p.routes[r]).length;
-		return `<button class="lord ${r === state.route ? "on" : ""}" data-r="${r}">${data.routes[r].name}<small>${n} paralogues</small>
-		</button>`;
+		return `<button class="lord ${r === state.route ? "on" : ""}" data-r="${r}">${data.routes[r].name}<small>${n} paralogues</small></button>`;
 	}).join("");
 	const secs = SECTIONS.map(([k, l]) => (
 		`<button class="sec ${k === state.sec ? "on" : ""}" data-s="${k}">${l}</button>`
@@ -65,10 +64,8 @@ export function renderPara(data: Sheet, route: RouteId, done: Checks): string {
 
 		return `<li class="p ${cls} ${isDone ? "done" : ""}">
 			<div class="when">${wins}</div>
-			<div class="name">${esc(p.name)} <small>· ${esc(p.char)}'s</small>
-		</div>
-			<div class="meta">
-		<b>Finish by ${esc(rt.deadline)}</b> · from ${esc(p.from)} · ${esc(p.reward)}</div>
+			<div class="name">${esc(p.name)} <small>· ${esc(p.char)}'s</small></div>
+			<div class="meta"><b>Finish by ${esc(rt.deadline)}</b> · from ${esc(p.from)} · ${esc(p.reward)}</div>
 			${rt.flag ? `<div class="note">${esc(rt.flag)}</div>` : ""}
 			<div class="meta" style="margin-top:4px">${esc(p.note)}</div>
 			<button class="chk ${isDone ? "on" : ""}" data-done="${key}" aria-label="Mark done">✓</button>
@@ -128,19 +125,12 @@ function timeline(data: Sheet, route: RouteId, list: TimelineItem[]): string {
 
 	s += `</svg>`;
 	return `<div class="tl">${s}<div class="legend">
-		<span>
-		<i style="background:var(--accent)">
-		</i>pickup window</span>
-		<span>
-		<i style="background:var(--danger)">
-		</i>3 days or less</span>
-		<span>
-		<i style="background:var(--warn)">
-		</i>see note</span>
+		<span><i style="background:var(--accent)"></i>pickup window</span>
+		<span><i style="background:var(--danger)"></i>3 days or less</span>
+		<span><i style="background:var(--warn)"></i>see note</span>
 		<span>| finish-by deadline</span>
 		<span>shaded = free time</span>
-		</div>
-		</div>`;
+	</div></div>`;
 }
 
 export function renderRec(data: Sheet, state: State, got: Checks): string {
@@ -233,8 +223,7 @@ function row(
 	].filter(Boolean);
 
 	return `<li class="r ${isGot ? "got" : ""}">
-		<div class="rr">${ren}<small>${s}S</small>
-		</div>
+		<div class="rr">${ren}<small>${s}S</small></div>
 		<div>
 		<div class="rn">${esc(u.n)}${where}${gate}</div>
 		<div class="rx">${notes.map(esc).join(" · ")}</div>
@@ -252,16 +241,14 @@ export function renderMiss(data: Sheet, r: RouteId): string {
 	h += `<ul class="dm">` + items.map((i) => (
 		`<li class="${i.hot ? "hot" : ""}">
 		<div class="w">Ch${i.ch}</div>
-		<div class="t">
-		<b>${esc(i.t)}</b>${i.s ? `<small>${esc(i.s)}</small>` : ""}</div>
+		<div class="t"><b>${esc(i.t)}</b>${i.s ? `<small>${esc(i.s)}</small>` : ""}</div>
 		</li>`
 	)).join("") + `</ul>`;
 	h += `<h3>Every route</h3>
 		<ul class="dm">` + (data.dontMiss.all || []).map((i) => (
 		`<li>
 		<div class="w">All</div>
-		<div class="t">
-		<b>${esc(i.t)}</b>${i.s ? `<small>${esc(i.s)}</small>` : ""}</div>
+		<div class="t"><b>${esc(i.t)}</b>${i.s ? `<small>${esc(i.s)}</small>` : ""}</div>
 		</li>`
 	)).join("") + `</ul>`;
 
@@ -297,18 +284,15 @@ export function renderData(data: Sheet): string {
 
 	return [
 		`<h2>Data</h2>`,
-		`<p class="lede">The whole sheet is one JSON object. Edit it here (or in the file's DATA block) and <b>Save</b> — it's kept in this browser only. <b>Reset</b> returns to the built-in data (v${esc(data.version)}).</p>`,
-		`<div class="conf">
-		<b>Known source conflicts</b>
-		<br>${conflicts.join("<br>")}<br>Dietrich's Sealed-Off Past pickup on Leda: 10/22 vs 10/29 (see paralogue note).</div>`,
+		`<p class="lede">The whole sheet is one JSON object. Edit it here (or in data/sheet.json) and <b>Save</b> — it's kept in this browser only. <b>Reset</b> returns to the built-in data (v${esc(data.version)}).</p>`,
+		`<div class="conf"><b>Known source conflicts</b><br>${conflicts.join("<br>")}<br>Dietrich's Sealed-Off Past pickup on Leda: 10/22 vs 10/29 (see paralogue note).</div>`,
 		`<textarea id="json" spellcheck="false">${esc(JSON.stringify(data, null, 1))}</textarea>`,
 		`<div class="btns">
 		<button class="btn pri" id="saveJson">Save data</button>
 		<button class="btn" id="resetJson">Reset to built-in</button>
 		<button class="btn" id="clearProg">Clear my checkmarks</button>
 		</div>`,
-		`<div class="msg" id="msg">
-		</div>`,
+		`<div class="msg" id="msg"></div>`,
 		`<p class="src">Sources: RPG Site — `,
 		`<a href="https://www.rpgsite.net/guide/21387-fire-emblem-fortunes-weave-paralogues-how-to-access-all-paralogue-battles-and-where-to-find-them">Paralogues</a>, `,
 		`<a href="https://www.rpgsite.net/guide/21391-fire-emblem-fortunes-weave-recruitment-guide-all-characters-in-game-how-to-recruit-them">Recruitment</a>, `,
